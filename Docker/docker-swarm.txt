@@ -1,0 +1,30 @@
+A Docker Swarm is a group of either physical or virtual machines that are running the Docker application and that have been configured to join together in a cluster.
+The activities of the cluster are controlled by a swarm manager, and machines that have joined the cluster are referred to as nodes.
+
+Node is master
+Worker is slave
+
+Formula to calculate number of master is
+master = (node-1)/2
+
+worker uses token to communicate to master. Communication uses TLS and Certificate authority\
+you can create custom nodes for == or != conditions for workers
+Docker swarm do not provide load balancing
+
+
+docker swarm leave // to leave a worker from cluster. Works fon worker
+
+
+// Master commands
+docker swarm init // to make a master 
+docker node ls //  to list all available nodes and worker. will work on master
+docker swarm join-token [worker|manager] // To get token for master or worker
+docker node rm <hostname or id> // master will remove it from cluster
+docker node inspect <name>
+docker node promote <name> //  To make worker as master
+docker node demote  <name> // To make master to worker
+docker service ls
+docker service rm <service_id>
+
+docker stack // like docker-compose but for cluster
+docker events // to check logs for docker-swarm

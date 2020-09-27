@@ -1,0 +1,46 @@
+docker info  // To see info, running containers, etc
+
+docker images // To list all images
+docker pull <image_name> // To pull image from docker 
+docker rmi <image_name> // To delete image
+
+docker container run <image_name> // To run container
+docker container run -d <image_name>  // To run container in background
+docker container ls // To list all running container (docker ps)
+docker container ls -a // To list stopped container also 
+docker container rm <container_id> // To remove container
+docker container rm $(docker container ls –aq) // To remove all stopped container
+docker container prune // To remove all containers
+docker container start <container_id> // To start a stopped container
+docker container stop <container_id> // To stop a running container
+docker container restart <container_id> // To restart a running container
+docker container exec -it <container_id> /bin/bash // To enter in container
+docker container run --name <image_name> // To give desire name to container
+docker container rename <image_name> new_name // To re-name to container
+
+docker container cp <file> <container_id>:<path in container>
+docker container commit --author "author" -m "message" <container_id> <image_name> // To create new image from running container
+
+// Docker file related
+docker image build -t <new_image_name>:<tag> .
+
+// Volumne (like mapping dir to base machine to save data)
+docker volume create <vol_name> // to create volume
+docker volume ls // to list all volume
+docker volume rm <vol_name> // to remove any particular volume
+docker volume prune // to remove all unused volume
+
+// Bind (like folder sharing)
+docker container run -it -v /home/shibu/Desktop/:/tmp/test ubuntu bash
+or
+docker container run -it --mount type=bind,source=/home/shibu/Desktop/,target=/tmp/test ubuntu bash
+
+// Networking and logs
+docker container inspect <container_id> // To get details including network of running conatiner
+docker container logs <container_id> // to check logs
+docker container logs <container_id> -f // to check live logs
+docker container run -p basePort:dockerPort <image name> // To map ports
+
+
+
+

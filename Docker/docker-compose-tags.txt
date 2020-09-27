@@ -1,0 +1,12 @@
+image - name of image
+ports
+restart - if exit state is not 0 than docker will restart it
+volumes
+command
+links - to link other images
+args - to give argumnet to use in other places or Dockerfile
+dockerfile - path to dockerfile
+networks
+environment - to give environment varibales
+env_file - to give path to a file having lot of environemnt varibales
+depends_on
