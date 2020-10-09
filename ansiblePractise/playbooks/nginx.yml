@@ -1,0 +1,82 @@
+---
+- name: Use of Copy module to copy on all host
+  hosts: all
+  gather_facts: yes
+  # check_mode: yes
+  # diff: yes
+  tasks:
+  - tags: ['copy1']
+    name: COPY
+    copy:
+     src: '/home/shibu/Desktop/Study/ansiblePractise/resources/master.gitconfig'
+     dest: "~/.gitconfig"
+     
+# - name: Create a data container
+#   hosts: localhost
+#   user: shibu
+#   tasks:
+#   - name: To stop docker container
+#     docker_container:
+#      name: ubuntu
+#      state: absent
+#     become: yes
+#     become_method: sudo 
+
+# - name: git_config
+#   hosts: all
+#   user: shibu
+#   tasks:
+#   - name: Read all values from git config
+#     git_config:
+#      list_all: yes
+#      scope: global
+#   - name: Read individual values
+#     git_config:
+#      name: user.name
+#      scope: global
+
+# - name: Use of command, ping and variables
+#   vars:
+#    ubuntu1: 10.10.12.91
+#   hosts: "{{ ubuntu1 }}"
+#   user: shibu
+#   tasks:
+#   - name: Command ifconfig
+#     command:
+#      cmd: ifconfig
+#   - name: Command Ping
+#     ping:
+
+# - name: Install package, check status, restart service for NGINX
+#   hosts: 10.10.12.91
+#   user: root
+#   tasks:
+#    - name: Install Nginx
+#      package:
+#       name: nginx
+#       state: latest
+#    - name: Verifying if NGINX service is running
+#      service:
+#       name: nginx
+#       state: started
+#   # If there is any error than handlers will restart the nginx service    
+#   handlers:
+#    - name: Restart NGINX
+#      service:
+#       name: nginx
+#       state: restarted
+
+# - name: package, check status, restart service for postgresql
+#   hosts: 10.10.12.91
+#   user: shibu
+#   tasks:
+#    - name: Install Postgres SQL
+#      package:
+#       name: postgresql
+#       state: latest
+#      become: yes
+#      become_method: sudo # To make user = shibu as sudo and pass -K with ansible-playbook <book>.yml -K
+#    - name: Verifying if Postgres SQL service is running
+#      service:
+#       name: postgresql
+#       state: started

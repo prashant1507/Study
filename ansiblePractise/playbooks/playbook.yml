@@ -1,0 +1,22 @@
+---
+- name: Use of Copy module to copy on all host
+  hosts: all
+  gather_facts: yes
+  # check_mode: yes
+  # diff: yes
+  tasks:
+  - tags: ['copy1']
+    name: COPY
+    copy:
+     src: '/home/shibu/Desktop/ansiblePractise/resources/master.gitconfig'
+     dest: "~/.gitconfig"
+
+  # - tags: ['copy2']
+  #   name: 'TEST'
+  #   copy:
+  #    content: 'Hi I am file'
+  #    dest: "~/.gitconfig"
+  #    backup: yes
+  #    owner: 
+  #    group:
+  #    mode: '777' 

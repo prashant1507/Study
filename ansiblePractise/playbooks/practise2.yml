@@ -1,0 +1,52 @@
+---
+  - hosts: ubuntu2
+    become: yes
+
+    # vars_prompt:
+    # # Prompt user to enter
+    # - name: "variable"
+    #   prompt: "Enter Value:"
+
+    tasks:
+      # - debug:
+      #     msg: "This is value {{ variable }}"
+
+      # - command: echo {{ item }}
+      #   loop: [ 0, 2, 4, 6, 8, 10 ]
+      #   when: item > 5
+
+      # - command: ls /
+      #   register: result
+      #   ignore_errors: yes
+
+      # - debug:
+      #     msg: "Success"
+      #   when: result is success  
+      
+      # - name: Execute apt-get update
+      #   apt:
+      #     update_cache: yes
+
+  #     - name: Ensure Naginx is installed
+  #       apt:
+  #         name: nginx
+  #         state: latest
+
+  #     - name: Start Nginx Services
+  #       service:
+  #         name: nginx
+  #         enabled: yes
+  #         state: started 
+
+  # - hosts: ubuntu2
+  #   become: yes
+  #   tasks:
+  #     - name: Ensure MySQL is installed
+  #       apt:
+  #         name: mysql-server
+  #         state: present
+
+  #     - name: Start MySQL
+  #       service:
+  #         name: mysqld
+  #         state: started  
