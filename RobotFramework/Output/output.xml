@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.6.9 on linux)" generated="20201022 13:37:31.454" rpa="false">
+<suite id="s1" name="Tests" source="/home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework/Tests">
+<suite id="s1-s1" name="TestCase1" source="/home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework/Tests/TestCase1.robot">
+<test id="s1-s1-t1" name="TEST1">
+<kw name="Set Test Documentation" library="BuiltIn">
+<doc>Sets documentation for the current test case.</doc>
+<arguments>
+<arg>This is TEST1 Doc</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.490" level="INFO">Set test documentation to:
+This is TEST1 Doc</msg>
+<status status="PASS" starttime="20201022 13:37:31.490" endtime="20201022 13:37:31.490"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>This is TEST1 msg</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.491" level="INFO">Set test message to:
+This is TEST1 msg</msg>
+<status status="PASS" starttime="20201022 13:37:31.491" endtime="20201022 13:37:31.491"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>This is first test</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.491" level="INFO">This is first test</msg>
+<status status="PASS" starttime="20201022 13:37:31.491" endtime="20201022 13:37:31.491"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-VARIABLE}</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.492" level="INFO">This is a test variable</msg>
+<status status="PASS" starttime="20201022 13:37:31.492" endtime="20201022 13:37:31.492"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-LIST}[0]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.493" level="INFO">l</msg>
+<status status="PASS" starttime="20201022 13:37:31.492" endtime="20201022 13:37:31.493"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[username]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.494" level="INFO">testUser</msg>
+<status status="PASS" starttime="20201022 13:37:31.493" endtime="20201022 13:37:31.494"></status>
+</kw>
+<kw name="Log My Username">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[username]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.495" level="INFO">testUser</msg>
+<status status="PASS" starttime="20201022 13:37:31.494" endtime="20201022 13:37:31.495"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.494" endtime="20201022 13:37:31.495"></status>
+</kw>
+<kw name="Log My Password">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[password]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.496" level="INFO">password</msg>
+<status status="PASS" starttime="20201022 13:37:31.495" endtime="20201022 13:37:31.496"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.495" endtime="20201022 13:37:31.496"></status>
+</kw>
+<kw name="Log my username and password 1">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Log My Username</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.498" level="INFO">Log My Username</msg>
+<status status="PASS" starttime="20201022 13:37:31.498" endtime="20201022 13:37:31.498"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Log My Password</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.498" level="INFO">Log My Password</msg>
+<status status="PASS" starttime="20201022 13:37:31.498" endtime="20201022 13:37:31.498"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.496" endtime="20201022 13:37:31.498"></status>
+</kw>
+<kw name="Log my username and password 2">
+<kw name="Log My Username">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[username]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.499" level="INFO">testUser</msg>
+<status status="PASS" starttime="20201022 13:37:31.499" endtime="20201022 13:37:31.500"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.499" endtime="20201022 13:37:31.500"></status>
+</kw>
+<kw name="Log My Password">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[password]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.500" level="INFO">password</msg>
+<status status="PASS" starttime="20201022 13:37:31.500" endtime="20201022 13:37:31.500"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.500" endtime="20201022 13:37:31.500"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.499" endtime="20201022 13:37:31.500"></status>
+</kw>
+<kw name="Log specific username">
+<arguments>
+<arg>${MY-DICTIONARY2}[username]</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${USERNAME}</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.501" level="INFO">testUser2</msg>
+<status status="PASS" starttime="20201022 13:37:31.501" endtime="20201022 13:37:31.501"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.501" endtime="20201022 13:37:31.501"></status>
+</kw>
+<kw name="Log specific username and password">
+<arguments>
+<arg>${MY-DICTIONARY}[username]</arg>
+<arg>${MY-DICTIONARY}[password]</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${USERNAME}</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.502" level="INFO">testUser</msg>
+<status status="PASS" starttime="20201022 13:37:31.502" endtime="20201022 13:37:31.502"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${PASSWORD}</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.503" level="INFO">password</msg>
+<status status="PASS" starttime="20201022 13:37:31.502" endtime="20201022 13:37:31.503"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.502" endtime="20201022 13:37:31.503"></status>
+</kw>
+<kw name="Log Variables" library="BuiltIn">
+<doc>Logs all variables in the current scope with given log level.</doc>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${/} = /</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${:} = :</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${\n} = 
+</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${DEBUG_FILE} = NONE</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${EXECDIR} = /home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${False} = False</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${LOG_FILE} = /home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework/Output/log.html</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${LOG_LEVEL} = INFO</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">&amp;{MY-DICTIONARY} = { username=testUser | password=password }</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">&amp;{MY-DICTIONARY2} = { username=testUser2 | password=password2 }</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${MY-LIST} = list1 list2 list3 list4</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${MY-VARIABLE} = This is a test variable</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${None} = None</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${null} = None</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${OUTPUT_DIR} = /home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework/Output</msg>
+<msg timestamp="20201022 13:37:31.504" level="INFO">${OUTPUT_FILE} = /home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework/Output/output.xml</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${PREV_TEST_MESSAGE} = </msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${PREV_TEST_NAME} = </msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${PREV_TEST_STATUS} = </msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${REPORT_FILE} = /home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework/Output/report.html</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${SPACE} =  </msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${SUITE_DOCUMENTATION} = This is my first test case</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">&amp;{SUITE_METADATA} = { }</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${SUITE_NAME} = Tests.TestCase1</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${SUITE_SOURCE} = /home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework/Tests/TestCase1.robot</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${TEMPDIR} = /tmp</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${TEST_DOCUMENTATION} = This is TEST1 Doc</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${TEST_NAME} = TEST1</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">@{TEST_TAGS} = [ test1 ]</msg>
+<msg timestamp="20201022 13:37:31.505" level="INFO">${True} = True</msg>
+<status status="PASS" starttime="20201022 13:37:31.503" endtime="20201022 13:37:31.505"></status>
+</kw>
+<kw name="Count Files In Directory" library="OperatingSystem">
+<doc>Wrapper for `Count Items In Directory` returning only file count.</doc>
+<arguments>
+<arg>/home/shibu/Desktop</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.506" level="INFO" html="yes">Listing contents of directory '&lt;a href="file:///home/shibu/Desktop"&gt;/home/shibu/Desktop&lt;/a&gt;'.</msg>
+<msg timestamp="20201022 13:37:31.506" level="INFO">5 files.</msg>
+<status status="PASS" starttime="20201022 13:37:31.505" endtime="20201022 13:37:31.506"></status>
+</kw>
+<kw name="Remove Directory" library="OperatingSystem">
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<arguments>
+<arg>/home/shibu/Desktop/test</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.506" level="INFO" html="yes">Directory '&lt;a href="file:///home/shibu/Desktop/test"&gt;/home/shibu/Desktop/test&lt;/a&gt;' does not exist.</msg>
+<status status="PASS" starttime="20201022 13:37:31.506" endtime="20201022 13:37:31.506"></status>
+</kw>
+<kw name="Logs">
+<arguments>
+<arg>This is failed test case</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.508" level="FAIL">No keyword with name 'Logs' found. Did you mean:
+    BuiltIn.Log</msg>
+<status status="FAIL" starttime="20201022 13:37:31.508" endtime="20201022 13:37:31.508"></status>
+</kw>
+<doc>This is TEST1 Doc</doc>
+<tags>
+<tag>test1</tag>
+</tags>
+<status status="FAIL" starttime="20201022 13:37:31.489" endtime="20201022 13:37:31.509" critical="yes">No keyword with name 'Logs' found. Did you mean:
+    BuiltIn.Log</status>
+</test>
+<test id="s1-s1-t2" name="TEST2">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>This is first test</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.510" level="INFO">This is first test</msg>
+<status status="PASS" starttime="20201022 13:37:31.509" endtime="20201022 13:37:31.510"></status>
+</kw>
+<tags>
+<tag>test2a</tag>
+<tag>test2b</tag>
+</tags>
+<status status="PASS" starttime="20201022 13:37:31.509" endtime="20201022 13:37:31.510" critical="yes"></status>
+</test>
+<doc>This is my first test case</doc>
+<status status="FAIL" starttime="20201022 13:37:31.476" endtime="20201022 13:37:31.510"></status>
+</suite>
+<suite id="s1-s2" name="TestCase2UsiingResourceFile" source="/home/shibu/Desktop/Eclipse_WorkSpace/Study/RobotFramework/Tests/TestCase2UsiingResourceFile.robot">
+<test id="s1-s2-t1" name="TEST3">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-VARIABLE}</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.520" level="INFO">This is a test variable</msg>
+<status status="PASS" starttime="20201022 13:37:31.519" endtime="20201022 13:37:31.520"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-LIST}[0]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.520" level="INFO">l</msg>
+<status status="PASS" starttime="20201022 13:37:31.520" endtime="20201022 13:37:31.520"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[username]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.521" level="INFO">testUser</msg>
+<status status="PASS" starttime="20201022 13:37:31.521" endtime="20201022 13:37:31.521"></status>
+</kw>
+<kw name="Log My Username" library="resources">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[username]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.522" level="INFO">testUser</msg>
+<status status="PASS" starttime="20201022 13:37:31.521" endtime="20201022 13:37:31.522"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.521" endtime="20201022 13:37:31.522"></status>
+</kw>
+<kw name="Log My Password" library="resources">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[password]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.522" level="INFO">password</msg>
+<status status="PASS" starttime="20201022 13:37:31.522" endtime="20201022 13:37:31.523"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.522" endtime="20201022 13:37:31.523"></status>
+</kw>
+<kw name="Log my username and password 1" library="resources">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Log My Username</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.524" level="INFO">Log My Username</msg>
+<status status="PASS" starttime="20201022 13:37:31.524" endtime="20201022 13:37:31.524"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Log My Password</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.524" level="INFO">Log My Password</msg>
+<status status="PASS" starttime="20201022 13:37:31.524" endtime="20201022 13:37:31.524"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.523" endtime="20201022 13:37:31.524"></status>
+</kw>
+<kw name="Log my username and password 2" library="resources">
+<kw name="Log My Username" library="resources">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[username]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.525" level="INFO">testUser</msg>
+<status status="PASS" starttime="20201022 13:37:31.525" endtime="20201022 13:37:31.525"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.525" endtime="20201022 13:37:31.525"></status>
+</kw>
+<kw name="Log My Password" library="resources">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${MY-DICTIONARY}[password]</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.526" level="INFO">password</msg>
+<status status="PASS" starttime="20201022 13:37:31.526" endtime="20201022 13:37:31.526"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.525" endtime="20201022 13:37:31.526"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.524" endtime="20201022 13:37:31.526"></status>
+</kw>
+<kw name="Log specific username" library="resources">
+<arguments>
+<arg>${MY-DICTIONARY2}[username]</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${USERNAME}</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.527" level="INFO">testUser2</msg>
+<status status="PASS" starttime="20201022 13:37:31.527" endtime="20201022 13:37:31.527"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.526" endtime="20201022 13:37:31.527"></status>
+</kw>
+<kw name="Log specific username and password" library="resources">
+<arguments>
+<arg>${MY-DICTIONARY}[username]</arg>
+<arg>${MY-DICTIONARY}[password]</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${USERNAME}</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.528" level="INFO">testUser</msg>
+<status status="PASS" starttime="20201022 13:37:31.528" endtime="20201022 13:37:31.528"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${PASSWORD}</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.529" level="INFO">password</msg>
+<status status="PASS" starttime="20201022 13:37:31.528" endtime="20201022 13:37:31.529"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.527" endtime="20201022 13:37:31.529"></status>
+</kw>
+<kw name="Count Files In Directory" library="OperatingSystem">
+<doc>Wrapper for `Count Items In Directory` returning only file count.</doc>
+<arguments>
+<arg>/home/shibu/Desktop</arg>
+</arguments>
+<msg timestamp="20201022 13:37:31.530" level="INFO" html="yes">Listing contents of directory '&lt;a href="file:///home/shibu/Desktop"&gt;/home/shibu/Desktop&lt;/a&gt;'.</msg>
+<msg timestamp="20201022 13:37:31.530" level="INFO">5 files.</msg>
+<status status="PASS" starttime="20201022 13:37:31.529" endtime="20201022 13:37:31.531"></status>
+</kw>
+<status status="PASS" starttime="20201022 13:37:31.519" endtime="20201022 13:37:31.532" critical="yes"></status>
+</test>
+<doc>This is my second test case using resource file. Doesnt require keywaord and variable section</doc>
+<status status="PASS" starttime="20201022 13:37:31.511" endtime="20201022 13:37:31.532"></status>
+</suite>
+<status status="FAIL" starttime="20201022 13:37:31.455" endtime="20201022 13:37:31.533"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="1">Critical Tests</stat>
+<stat pass="2" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">test1</stat>
+<stat pass="1" fail="0">test2a</stat>
+<stat pass="1" fail="0">test2b</stat>
+</tag>
+<suite>
+<stat pass="2" fail="1" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="1" id="s1-s1" name="TestCase1">Tests.TestCase1</stat>
+<stat pass="1" fail="0" id="s1-s2" name="TestCase2UsiingResourceFile">Tests.TestCase2UsiingResourceFile</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
