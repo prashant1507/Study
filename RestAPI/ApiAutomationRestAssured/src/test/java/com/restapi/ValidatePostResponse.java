@@ -1,13 +1,10 @@
 package com.restapi;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.junit.Assert;
 
 public class ValidatePostResponse {
