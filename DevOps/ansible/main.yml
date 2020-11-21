@@ -1,0 +1,45 @@
+- name: Operations on vm created by terraform
+  gather_facts: false
+  hosts: ubuntu
+  strategy: free
+
+
+  tasks:
+    - name: Ping
+      ping:
+
+    - name: Run update
+      become: true
+      apt:
+        update_cache: yes
+
+    - name: Install vim, git, net-tools, docker, curl
+      become: true
+      apt:
+        # update_cache: yes
+        pkg:
+          - vim
+          - git
+          - net-tools
+          - docker*
+          - curl
+
+    - name: Create temp folder at Desktop
+      file:
+        path: ~/Desktop/temp
+        state: directory
+    
+    - name: Copy VS_Code
+      copy:
+        src: ./resources/vs_code.deb
+        dest: ~/Desktop/temp
+
+    - name: Install VS_Code
+      become: true
+      apt:
+        deb: /home/{{ ansible_ssh_user }}/Desktop/temp/vs_code.deb
+
+    - name: Remove temp folder from Desktop
+      file:
+        path: ~/Desktop/temp
+        state: absent
