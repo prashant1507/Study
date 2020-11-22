@@ -11,7 +11,7 @@ pipeline {
         stage('Clone VM') {
             steps {
                 echo "Building the checkout project";
-                dir('DevOps/terraform/clone and create-snapshot') {
+                dir('DevOps/terraform/clone-and-create-snapshot') {
                     sh 'terraform init'
                     sh 'terraform plan --var-file=variables.tfvar'
                     sh 'terraform apply --var-file=variables.tfvar --auto-approve'
