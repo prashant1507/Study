@@ -69,20 +69,20 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = data.vsphere_virtual_machine.var_template.id
 
     # Customization for cloned VM
-    # customize {
-    #   linux_options {
-    #     host_name = var.host_name
-    #     domain    = var.domain_name
-    #     time_zone = var.time_zone
-    #   }
+    customize {
+      linux_options {
+        host_name = var.host_name
+        domain    = var.domain_name
+        time_zone = var.time_zone
+      }
 
-    #   network_interface {
-    #     ipv4_address    = var.ipv4_address
-    #     ipv4_netmask    = var.ipv4_netmask
-    #     dns_server_list = [var.dns_server_list]
-    #   }
-    #   ipv4_gateway = var.ipv4_gateway
-    # }
+      network_interface {
+        ipv4_address    = var.ipv4_address
+        ipv4_netmask    = var.ipv4_netmask
+        dns_server_list = [var.dns_server_list]
+      }
+      ipv4_gateway = var.ipv4_gateway
+    }
   }
 
   # Copy public key

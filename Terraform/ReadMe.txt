@@ -23,6 +23,7 @@ to run from plan: terraform apply plan
 to delete particular snapshot: terraform destroy -target=vsphere_virtual_machine_snapshot.vm_snapshot[0]
 
 Examples: https://github.com/diodonfrost/terraform-vsphere-examples
+        Examples using module: https://github.com/Terraform-VMWare-Modules/terraform-vsphere-vm
 
 Ansible+Terraform: https://github.com/DevOpsPlayground/Hands-on-with-Terraform-and-Ansible#check-instance-is-running
                    https://coffay.haus/pages/terraform+ansible/
