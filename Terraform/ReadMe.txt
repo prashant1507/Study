@@ -1,5 +1,5 @@
 {
-    "Download the latest version with the command": "wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip",
+    "Download the latest version with the command": "wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip",
     "Install zip with the command": "sudo apt-get install zip -y",
     "Unzip the Terraform download with the command": "unzip terraform*.zip",
     "Finally, move the executable with the command": "sudo mv terraform /usr/local/bin",
