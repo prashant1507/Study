@@ -1,6 +1,6 @@
 # Configure VSphere Provider
 terraform {
-  required_version = ">=0.13.5"
+  required_version = ">=0.12.0"
   required_providers {
     vsphere = "> 1.16.0"
   }
