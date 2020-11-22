@@ -1,0 +1,54 @@
+- name: Operations on vm created by terraform
+  gather_facts: false
+  hosts: localhost
+  
+  tasks:
+  - name: Include vars
+    include_vars:
+      file: resources/variables.json
+      name: variables
+
+  - name: Create a snapshot
+    vmware_guest_snapshot:
+      hostname: "{{ variables.vsphere.vsphere_server }}"
+      username: "{{ variables.vsphere.vsphere_username }}"
+      password: "{{ variables.vsphere.vsphere_password }}"
+      validate_certs: "{{ variables.vsphere.validate_certs }}"
+      datacenter: "{{ variables.vsphere.vsphere_datacenter }}"
+      # folder: "/ESxi_Datacenter/vm/"
+      # name: terraform-ubuntu_18_backup
+      uuid: "{{ variables.vsphere_vm.virtual_machine_uuid }}"
+      state: present
+      snapshot_name: "{{ variables.vsphere_vm.vm_snapshot_name }}"
+      description: snap1_description
+    delegate_to: localhost
+    when: variables.action.value == 'snapshot'
+    
+  - name: Revert to a snapshot
+    vmware_guest_snapshot:
+      hostname: "{{ variables.vsphere.vsphere_server }}"
+      username: "{{ variables.vsphere.vsphere_username }}"
+      password: "{{ variables.vsphere.vsphere_password }}"
+      validate_certs: "{{ variables.vsphere.validate_certs }}"
+      datacenter: "{{ variables.vsphere.vsphere_datacenter }}"
+      uuid: "{{ variables.vsphere_vm.virtual_machine_uuid }}"
+      state: revert
+      snapshot_name: "{{ variables.vsphere_vm.vm_snapshot_name }}"
+    delegate_to: localhost
+    when: variables.action.value == 'revert'
+
+  - name: Remove a snapshot
+    vmware_guest_snapshot:
+      hostname: "{{ variables.vsphere.vsphere_server }}"
+      username: "{{ variables.vsphere.vsphere_username }}"
+      password: "{{ variables.vsphere.vsphere_password }}"
+      validate_certs: "{{ variables.vsphere.validate_certs }}"
+      datacenter: "{{ variables.vsphere.vsphere_datacenter }}"
+      uuid: "{{ variables.vsphere_vm.virtual_machine_uuid }}"
+      state: absent
+      quiesce: True
+      memory_dump: True
+      remove_children: True
+      snapshot_name: "{{ variables.vsphere_vm.vm_snapshot_name }}"
+    delegate_to: localhost
+    when: variables.action.value == 'remove'

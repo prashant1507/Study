@@ -1,0 +1,16 @@
+{
+    "vsphere": {
+        "vsphere_username": "administrator@vsphere.local",
+        "vsphere_password": "S0ssw0rd@19",
+        "vsphere_server": "192.168.0.201",
+        "validate_certs": false,
+        "vsphere_datacenter": "ESxi_Datacenter"       
+    },
+    "vsphere_vm": {
+        "virtual_machine_uuid": "422ebec6-e721-4b84-01a6-7846848c9bf8",
+        "vm_snapshot_name":"test_snapshot"
+    },
+    "action": {
+        "value": "snapshot"
+    }
+}

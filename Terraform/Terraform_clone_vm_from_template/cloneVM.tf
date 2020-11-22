@@ -11,27 +11,27 @@ provider "vsphere" {
 #### Create a virtual machine
 # Define VMware vSphere
 data "vsphere_datacenter" "var_ESxi_Datacenter" {
-    name = var.vsphere_datacenter
+  name = var.vsphere_datacenter
 }
 
 data "vsphere_datastore" "var_datastore" {
-    name = var.vsphere_datastore
-    datacenter_id = data.vsphere_datacenter.var_ESxi_Datacenter.id
+  name          = var.vsphere_datastore
+  datacenter_id = data.vsphere_datacenter.var_ESxi_Datacenter.id
 }
 
 data "vsphere_compute_cluster" "var_cluster" {
-    name = var.vsphere_cluster
-    datacenter_id = data.vsphere_datacenter.var_ESxi_Datacenter.id
+  name          = var.vsphere_cluster
+  datacenter_id = data.vsphere_datacenter.var_ESxi_Datacenter.id
 }
 
 data "vsphere_network" "var_network" {
-    name = var.vsphere_vm_network
-    datacenter_id = data.vsphere_datacenter.var_ESxi_Datacenter.id
+  name          = var.vsphere_vm_network
+  datacenter_id = data.vsphere_datacenter.var_ESxi_Datacenter.id
 }
 
 data "vsphere_virtual_machine" "var_template" {
-    name = var.vm_template_name
-    datacenter_id = data.vsphere_datacenter.var_ESxi_Datacenter.id
+  name          = var.vm_template_name
+  datacenter_id = data.vsphere_datacenter.var_ESxi_Datacenter.id
 }
 
 
@@ -72,7 +72,7 @@ resource "vsphere_virtual_machine" "vm" {
     #     ipv4_address = "192.168.0.200"
     #     ipv4_netmask = 24
     #   }
-        
+
     #   ipv4_gateway = "192.168.0.1"
     # }
   }
