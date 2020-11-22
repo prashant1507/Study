@@ -1,7 +1,9 @@
 - name: Operations on vm created by terraform
   gather_facts: false
   hosts: localhost
-  
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    
   tasks:
   - name: Include vars
     include_vars:

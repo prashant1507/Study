@@ -81,7 +81,8 @@ resource "vsphere_virtual_machine" "vm" {
     #     ipv4_netmask    = var.ipv4_netmask
     #     dns_server_list = [var.dns_server_list]
     #   }
-    #   ipv4_gateway = var.ipv4_gateway
+      
+    #   ipv4_gateway       = var.ipv4_gateway
     # }
   }
 
@@ -141,7 +142,7 @@ resource "local_file" "ansible_variables" {
       vsphere_server       = var.vsphere_client_server
       vsphere_datacenter   = var.vsphere_datacenter
       virtual_machine_uuid = vsphere_virtual_machine.vm.uuid
-      vm_snapshot_name = var.snapshot_name
+      vm_snapshot_name     = var.snapshot_name
     }
   )
   filename = var.ansible_variable_file
