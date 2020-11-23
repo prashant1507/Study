@@ -44,7 +44,7 @@ resource "vsphere_virtual_machine" "vm" {
   # count            = 2
   # name             = format("terraform-%s-%s", var.vm_template_name, count.index + 1)
 
-  name             = format("terraform-%s", var.vm_template_name)
+  name             = format("terraform-%s", var.vm_name)
   resource_pool_id = data.vsphere_compute_cluster.var_cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.var_datastore.id
   num_cpus         = var.num_cpu
@@ -112,7 +112,7 @@ resource "vsphere_virtual_machine" "vm" {
 resource "vsphere_virtual_machine_snapshot" "vm_snapshot" {
   count                = 1
   virtual_machine_uuid = vsphere_virtual_machine.vm.uuid
-  snapshot_name        = format("terraform-snapshot-%s", var.vm_template_name)
+  snapshot_name        = format("terraform-snapshot-%s", var.vm_name)
   description          = "This is Demo Snapshot"
   memory               = "true"
   quiesce              = "true"
@@ -157,6 +157,7 @@ output "ipv4_address_example2" {
 }
 
 output "UUID" {
+  description = "UUID of the vm"
   value = vsphere_virtual_machine.vm.uuid
 }
 

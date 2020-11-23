@@ -10,10 +10,7 @@
       "datacenter": "{{user `vcenter-datacenter`}}",
       "datastore": "{{user `vcenter-datastore`}}",
       "disk_controller_type": "pvscsi",
-      
-      "floppy_files": [
-        "./ks.cfg"
-      ],
+      "floppy_files": ["./preseed.cfg"],
       "boot_command": [
         "<enter><wait><f6><wait><esc><wait>",
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
@@ -29,9 +26,10 @@
         " initrd=/install/initrd.gz",
         " priority=critical",
         " locale=en_US",
-        " file=/media/ks.cfg",
+        " file=/media/preseed_server.cfg",
         "<enter>"
       ],
+      "boot_wait": "10s",
 
       "folder": "{{user `vcenter-folder`}}",
       "guest_os_type": "ubuntu64Guest",

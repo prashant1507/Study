@@ -1,0 +1,27 @@
+https://www.youtube.com/watch?v=xi4VLYrwFgg&list=PL6XT0grm_TfhFKUv_KI_DTVr0TCincl1r&ab_channel=GauravSharma
+
+- Swap should be off for all nodes in kubernate cluster
+  - To check: `free -h`
+  - To turn off: `swapoff -a`
+  - To avoid swap to turn on after reboot: comment or remove all swap entries from `/etc/fstab`
+- Hostname should be different for all nodes
+- Check UUID for all node `cat /sys/class/dmi/id/product_uuid`. All should be unique
+- Install supported docker for kubernates
+  - For ubuntu: https://docs.docker.com/engine/install/ubuntu/
+- Setup kubernates using `kubeadm` or any other method
+  - For kubeadm: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+- Setup POD network for cluster on master using any method
+  - for eg. Using Flannel: `kubeadm init --pod-network-cidr=10.244.0.0/16`
+  - one you run above command, you can see commands to run on master and slave
+  - check status by `kubectl get nodes -A` and all should be `running` if not up than run `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`
+- To reset slave in case it failed to become slave: `kubeadm reset`
+- Set bash auto complete for kubectl
+  - apt install bash-completion
+  - kubectl completion bash > ~/.kube/kubecom.sh
+  - source ~/.kube/kubecom.sh
+  - vim ~/.profile and paste this at last `source ~/.kube/kubecom.sh`
+- To fix x509 certificate problem
+  - export KUBECONFIG=/etc/kubernetes/kubelet.conf
+- To create pod
+  -
+  -

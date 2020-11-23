@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    parameters {
+        string(defaultValue: "", description: '', name: 'action', trim: true)
+    }
+    stages {
+        stage('Destroy vm') {
+            steps {
+                echo "Destroying vm"
+                echo env.action
+                echo "${action}"
+                echo params.action
+                sh 'sed -i "s/action_value/env.action/g" resources/variables.json'
+            }
+        }
+    }
+}

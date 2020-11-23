@@ -38,6 +38,11 @@ variable "vm_template_name" {
   description = "Template Name"
 }
 
+variable "vm_name" {
+  description = "vm name"
+  default = "vm-machine"
+}
+
 variable "num_cpu" {
   type        = number
   description = "Number of CPUs"
