@@ -1,24 +1,20 @@
 {
-    "vm-name": "Ubuntu-1804-Template",
-      
-    "vcenter-server":"192.168.0.201",
-    "vcenter-username":"administrator@vsphere.local",
-    "vcenter-password":"S0ssw0rd@19",
-    
-    "datacenter": "ESxi_Datacenter",
-    "datastore": "datastore1",
-    "folder": "Templates",
-    "cluster": "ESxi_Cluster",
-    "network": "VM Network",
-    
-    "vm-cpu-num": "2",
-    "vm-mem-size": "2024",
-    "vm-disk-size": "10240",
-      
-    "ssh-username": "user",
-    "ssh-password": "user",
-    
-    "iso-url": "http://cdimage.ubuntu.com/releases/18.04/release/ubuntu-18.04.4-server-amd64.iso",
-    "iso-checksum": "e2ecdace33c939527cbc9e8d23576381c493b071107207d2040af72595f8990b",
-    "iso-checksum-type": "sha256"
-  }
+  "vcenter-server": "192.168.0.201",
+  "vcenter-username": "administrator@vsphere.local",
+  "vcenter-password": "S0ssw0rd@19",
+  "vcenter-datacenter": "ESxi_Datacenter",
+  "vcenter-cluster": "ESxi_Cluster",
+  "vcenter-network": "VM Network",
+  "vcenter-datastore": "datastore1",
+  "vcenter-folder": "Machines_Created_By_Packer",
+
+  "vm-name": "Ubuntu-1804-server",
+  "vm-cpu-num": "2",
+  "vm-mem-size": "2024",
+  "vm-disk-size": "10240",
+
+  "ssh-username": "user",
+  "ssh-password": "password",
+  
+  "iso_url": "[datastore1] ubuntu-18.04.5-live-server-amd64.iso"   
+}

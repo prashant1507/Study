@@ -36,7 +36,6 @@ variable "vsphere_vm_network" {
 
 variable "vm_template_name" {
   description = "Template Name"
-  default     = "ubuntu_18"
 }
 
 variable "num_cpu" {
@@ -96,18 +95,19 @@ variable "ssh_public_key" {
 }
 
 variable "ssh_user" {
-  default = "user"
+  description = "User in vm"
+  default     = "user"
 }
 
 variable "ssh_password" {
-  default = "password"
+  description = "Password of user in vm"
 }
 
-variable "snapshot_name" {
-  default = "test_snapshot"
+variable "connection_type" {
+  default = "ssh"
 }
 
-# Ansible file
+# Ansible files
 variable "ansible_inventory_template" {
   description = "Ansible inventory file template path"
 }

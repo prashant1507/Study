@@ -11,6 +11,15 @@
     "Setup VCenter": "Setup VCenter"
 }
 
+// To fix Ubuntu 18 and 20 customization problem
+1.rm -f /etc/resolv.conf
+2.ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+3. Open the tmp.conf under /usr/lib/tmpfiles.d/tmp.conf file.
+4. Comment the line below
+		#D /tmp 1777 root root -
+5. If you have open-vm-tools installed, open the /lib/systemd/system/open-vm-tools.service file. In certain version path may be different the use find command locate the file 
+                Add this line “After=dbus.service” under [Unit]
+
 terraform init
 terraform plan
 terraform apply [--auto-approve]

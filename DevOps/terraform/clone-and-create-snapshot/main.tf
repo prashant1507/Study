@@ -69,21 +69,20 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = data.vsphere_virtual_machine.var_template.id
 
     # Customization for cloned VM
-    # customize {
-    #   linux_options {
-    #     host_name = var.host_name
-    #     domain    = var.domain_name
-    #     time_zone = var.time_zone
-    #   }
+    customize {
+      linux_options {
+        host_name = var.host_name
+        domain    = var.domain_name
+        time_zone = var.time_zone
+      }
 
-    #   network_interface {
-    #     ipv4_address    = var.ipv4_address
-    #     ipv4_netmask    = var.ipv4_netmask
-    #     dns_server_list = [var.dns_server_list]
-    #   }
-      
-    #   ipv4_gateway       = var.ipv4_gateway
-    # }
+      network_interface {
+        ipv4_address    = var.ipv4_address
+        ipv4_netmask    = var.ipv4_netmask
+      }
+      dns_server_list = [var.dns_server_list]
+      ipv4_gateway = var.ipv4_gateway
+    }
   }
 
   # Copy public key
@@ -102,7 +101,7 @@ resource "vsphere_virtual_machine" "vm" {
   # SSH 
   connection {
     host     = self.default_ip_address
-    type     = "ssh"
+    type     = var.connection_type
     user     = var.ssh_user
     password = var.ssh_password
   }
@@ -112,7 +111,7 @@ resource "vsphere_virtual_machine" "vm" {
 resource "vsphere_virtual_machine_snapshot" "vm_snapshot" {
   count                = 1
   virtual_machine_uuid = vsphere_virtual_machine.vm.uuid
-  snapshot_name        = var.snapshot_name
+  snapshot_name        = format("snapshot-%s", var.vm_template_name)
   description          = "This is Demo Snapshot"
   memory               = "true"
   quiesce              = "true"
@@ -142,7 +141,7 @@ resource "local_file" "ansible_variables" {
       vsphere_server       = var.vsphere_client_server
       vsphere_datacenter   = var.vsphere_datacenter
       virtual_machine_uuid = vsphere_virtual_machine.vm.uuid
-      vm_snapshot_name     = var.snapshot_name
+      vm_snapshot_name     = format("snapshot-%s", var.vm_template_name)
     }
   )
   filename = var.ansible_variable_file
