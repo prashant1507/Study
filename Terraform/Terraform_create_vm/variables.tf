@@ -11,7 +11,7 @@ variable "vsphere_client_password" {
 
 variable "vsphere_client_server" {
   description = "VSphere URL"
-  default     = "192.168.0.198"
+  default     = "192.168.0.201"
 }
 
 variable "allow_unverified_ssl" {

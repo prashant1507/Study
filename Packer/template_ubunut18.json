@@ -4,19 +4,35 @@
       "CPUs": "{{user `vm-cpu-num`}}",
       "RAM": "{{user `vm-mem-size`}}",
       "RAM_reserve_all": false,
-      "boot_command": [
-        "<esc><wait>",
-        "linux ks=hd:fd0:/ks.cfg<enter>"
-      ],
       "cluster": "{{user `vcenter-cluster`}}",
       "convert_to_template": "true",
       "create_snapshot": "true",
       "datacenter": "{{user `vcenter-datacenter`}}",
       "datastore": "{{user `vcenter-datastore`}}",
       "disk_controller_type": "pvscsi",
+      
       "floppy_files": [
-        "ks.cfg"
+        "./ks.cfg"
       ],
+      "boot_command": [
+        "<enter><wait><f6><wait><esc><wait>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs>",
+        "/install/vmlinuz",
+        " initrd=/install/initrd.gz",
+        " priority=critical",
+        " locale=en_US",
+        " file=/media/ks.cfg",
+        "<enter>"
+      ],
+
       "folder": "{{user `vcenter-folder`}}",
       "guest_os_type": "ubuntu64Guest",
       "insecure_connection": "true",

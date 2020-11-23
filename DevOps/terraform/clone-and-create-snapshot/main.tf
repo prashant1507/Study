@@ -94,7 +94,8 @@ resource "vsphere_virtual_machine" "vm" {
       "echo ${var.ssh_public_key} >> /home/${var.ssh_user}/.ssh/authorized_keys",
       "chown ${var.ssh_user}:${var.ssh_user} -R /home/${var.ssh_user}/.ssh",
       "chmod 700 /home/${var.ssh_user}/.ssh",
-      "chmod 600 /home/${var.ssh_user}/.ssh/authorized_keys"
+      "chmod 600 /home/${var.ssh_user}/.ssh/authorized_keys",
+      "echo ${var.ssh_password} | sudo -S -k apt-get install net-tools"
     ]
   }
 
@@ -111,7 +112,7 @@ resource "vsphere_virtual_machine" "vm" {
 resource "vsphere_virtual_machine_snapshot" "vm_snapshot" {
   count                = 1
   virtual_machine_uuid = vsphere_virtual_machine.vm.uuid
-  snapshot_name        = format("snapshot-%s", var.vm_template_name)
+  snapshot_name        = format("terraform-snapshot-%s", var.vm_template_name)
   description          = "This is Demo Snapshot"
   memory               = "true"
   quiesce              = "true"
@@ -157,4 +158,8 @@ output "ipv4_address_example2" {
 
 output "UUID" {
   value = vsphere_virtual_machine.vm.uuid
+}
+
+output "When_IPv4_is_customized" {
+  value = vsphere_virtual_machine.vm.clone[0].customize[0].network_interface[0].ipv4_address
 }
