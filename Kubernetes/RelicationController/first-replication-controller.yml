@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: replication-controller-name
+  labels:
+    replication-controller-key: replication-controller-value
+
+# Spec of ReplicaController
+spec:
+  replicas: 5
+  selector:
+    # Label value of POD
+    type: my-first-pod
+  template:
+    metadata: 
+      name: pod-name
+      labels:
+        env: label_name_attached_to_pod
+        type: my-first-service
+    # Spec of POD
+    spec:
+      containers:
+        - name: container1
+          image: coolgourav147/nginx-custom
+          resources:
+            limits:
+              memory: 60Mi
+              cpu: "1"
+            requests:
+              memory: 56Mi
+              cpu: "0.2"
+          env:
+            - name: env-variable-name
+              value: env-variable-value
+            - name: country
+              value: usa
