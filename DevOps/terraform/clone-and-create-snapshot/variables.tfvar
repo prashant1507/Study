@@ -1,0 +1,12 @@
+vsphere_client_user = "administrator@vsphere.local"
+vsphere_client_password = "S0ssw0rd@19"
+vsphere_client_server = "192.168.0.201"
+allow_unverified_ssl = "true"
+ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwCzL+VBOpWN5xoKGD3Dr6SobQblA/B/z5a2U5p/onxy162oC84afsWxoxWqkRpygjhMVut25W4Lf57GvGYSIRz2z4xjv0zrpa3GcIeUNNCpojeYclhDH/rdllSWQ4+IFDepDxZrkmJtJv6l/TJg8ZPOxEzWtIuqQPpoRztgvf1/MJqYoskrgYUhd8AS1h/tS9A03LC88ItpPyHewLy4+rJdpzohH6W5PE39n/dpa7zThooJEpX+bCx748yQEDhUpkcqomt8eTVbvt8sqgYyAlKRFmJTrSvmn4P79WsgXRcYBupRPSoFjJnzb6vSbAMZwR8/hAHEJNH2bEYYJdQlVz shibu@Ubuntu64bit"
+vm_template_name = "ubuntu_18_server"
+ssh_password = "password"
+
+ansible_inventory_template = "./resources/inventory.tmpl"
+ansible_inventory = "../../ansible/resources/inventory"
+ansible_variable_file_template = "./resources/variables.tmpl"
+ansible_variable_file = "../../ansible/resources/variables.json"

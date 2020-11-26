@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pod-name
+  labels:
+    # Key:
+    env: label_name_attached_to_pod
+    type: my-first-pod
+spec:
+  containers:
+    - name: container-name
+      image: coolgourav147/nginx-custom
+      resources:
+        limits:
+          memory: 512Mi
+          cpu: "1"
+        requests:
+          memory: 256Mi
+          cpu: "0.2"
+      env:
+        - name: env-variable-name
+          value: env-variable-value
+        - name: country
+          value: usa
+      args: [ "sleep", "30" ]
+    # Give another container for the POD
+    # - name: container2
+    #   image: 
+  initContainers:
+  # initContainer runs before main container
+    - name: init-container-name
+      image: coolgourav147/nginx-custom
+      resources:
+        limits:
+          memory: 512Mi
+          cpu: "1"
+        requests:
+          memory: 56Mi
+          cpu: "0.2"
+      env:
+        - name: env-variable-name
+          value: env-variable-value
+        - name: country
+          value: usa
+      args: [ "sleep", "50" ]

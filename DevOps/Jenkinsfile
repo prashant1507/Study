@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+    stages {
+        stage('Git-Checkout') {
+            steps {
+                echo "Checkout from GIT repo";
+                git branch: 'terraform', credentialsId: 'GitHub', url: 'https://github.com/prashant1507/Study.git'
+            }
+        }
+        
+        stage('Clone VM') {
+            steps {
+                echo "Building the checkout project";
+                dir('DevOps/terraform/clone-and-create-snapshot') {
+                    sh 'terraform init'
+                    sh 'terraform plan --var-file=variables.tfvar'
+                    sh 'terraform apply --var-file=variables.tfvar --auto-approve'
+                }
+            }
+        }
+        
+        stage('Install Packages') {
+            steps {
+                echo "Installing packages on vm";
+                dir('DevOps/ansible') {
+                    sh 'ansible-playbook main.yml -vvv'
+                }
+            }
+        }
+        
+        stage('Quality Gate') {
+            steps {
+                echo "Verifying quality";
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                echo "Deploying project";
+            }
+        }
+    }
+    post {
+        always {
+            echo "Always"
+        }
+        success {
+            echo "Success"
+        }
+        failure {
+            echo "Fail"
+        }
+        unstable {
+            echo "Unstable"
+        }
+        changed {
+            echo "If current job status is different from last job"
+        }
+    }
+}

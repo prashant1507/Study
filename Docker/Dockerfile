@@ -10,14 +10,16 @@
 # CMD - to run command as soon as container starts
 # EXPOSE - to expose port
 # ENTRYPOINT - To run command on container starts
+
 FROM ubuntu
 #LABEL name="ubuntu"
 #LABEL name="version 1"
 #ENV NAME prashant
 #ENV PASS test
+USER root
 RUN apt-get update
-#RUN apt-get install -y tree
-#RUN apt-get install -y vim
+#RUN apt-get install -y tree &&\
+#    apt-get install -y vim
 #RUN echo "hello" > /tmp/hello.txt && touch /tmp/test.txt
 #RUN cd /tmp
 #RUN echo "I am a new image"
