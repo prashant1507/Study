@@ -34,6 +34,8 @@ https://www.youtube.com/watch?v=X48VuDVv0do&ab_channel=TechWorldwithNana
         - Custom: Created by user to run PODs
     - Names are unique in each namespace. Eg., TEST_NAME can be userd in NAMESPACE1 and NAMESPACE2
 - In K8 resoucres are: PODs, nodes, etc
+- Taints and Tolerance:
+
 
 ====== K8s Components=========
 - 'Volumes' component is used to map phusical storage (like physical device, harddisk, cloud storage etc) to POD 
@@ -61,15 +63,26 @@ https://www.youtube.com/watch?v=X48VuDVv0do&ab_channel=TechWorldwithNana
 - 'Ingress' component is used to route traffic into the cluster 
 - Namespace"
     - Its a cluster inside a cluster (like virtual machines)
-    - ResourceQuota can be used to set limits to namespace
+    - ResourceQuota:
+        - can be used to set limits to namespace
         - Compute based resource quota: Defining resouses like cpu, memory for a namespace 
         - Object based resoucre quota: Defining objects like pods, configmap, replica, etc
+    - LimitRange:
+        - To define default requests and limits for PODs created in the namespace
 - Rollout (update) will only happen if the changes are done only for POD's spec section otherwise wont happen.
     - For eg., If in previous deployment replica was 2 and if you change replica to 4 in new dpeloyment thaan roolout won't happen
 - POD:
     - If requests is not defined but limits is defined than by default requests=limits
-
-
+- ConfigMap: https://kubernetes.io/docs/concepts/configuration/configmap/
+    - To give configuration of the application
+- Secrets: https://kubernetes.io/docs/concepts/configuration/secret/
+    - Store upto 1MB of data 
+    - All data is encrypted. encode to base64 
+    - Types:
+        - docker-registry: A Kubernetes cluster uses the Secret of docker-registry type to authenticate with a container registry to pull a private image.
+        - TLS: Kubernetes provides a builtin Secret type kubernetes.io/tls for to storing a certificate and its associated key that are typically used for TLS
+        - Generic
+    
 ======= Setting up kubernates ========
 https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-linux
 - All master and worker must have minimum 2 processor
@@ -97,6 +110,18 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
 - Set static IP for master 
   - https://www.techrepublic.com/article/how-to-configure-a-static-ip-address-in-ubuntu-server-18-04/
 
+============= Tips ===============
+- Kubernatesdocumentation with examples
+- just add --help to get more info 
+    - For eg.,
+        - kubectl create secret generic --help
+        - kubectl create secret --help
+- get sample yaml content for any object like pod, secret, etc
+    - For e.g,
+        - kubectl create ns ns1 --dry-run=client -o yaml
+- for volumnes mount, The FileOrFolder mode does not create the parent directory of the file. If the parent directory of the mounted file does not exist, the pod fails to start
+
+ 
 ========= Extra/Commands =========
 - Add new node: kubeadm token create --print-join-command
 - To remove node from master (or clean files created by kubeadm init or kubeadm join): kubeadm reset
@@ -105,13 +130,27 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
     - json: kubectl get pods -o json
 - To convert string values to base64 encode for Secret file: echo -n 'PASSWORD' | base64
 - To reset slave in case it failed to become slave: `kubeadm reset`
-- Terminal to POD: kubectl exec -it POD_NAME --/bin/bash
-- Terminal to POD's container: 
+- Terminal to POD's with 1 container: kubectl exec -it POD_NAME --/bin/bash
+- Terminal to POD's container: kubectl exec pod-name -c CONTAINER_NAME env  (CONTAINER_NAME from yml file)
 - To watch live status of deployment creation: kubectl get pod --watch
 - Explaination:
     - Less explaination: kubectl explain [pod][service][cluster][deployment]
     - Nested explaination for all keys: kubectl explain [pod][service][cluster][deployment] --recursive
     - To automatically get yml file: kubectl run NEW_PPOD_NAME --dry-run --image=IMAGE_NAME -o yaml
+- ConfigMap:
+    - Get: kubectl get configmap
+    - Create: kubectl create configmap CONFIG_MAP_NAME --from-literal=KEY="VALUE" --from-literal=KEY2="VALUE2"
+    - Delete: kubectl delete configmap CONFIG_MAP_NAME
+    - Create from properties file: kubectl create configmap CONFIG_MAP_NAME --from-file==PROPERTIES_FILE_NAME.properties --from-file==PROPERTIES_FILE_NAME2.properties
+    - Create from all properties file in a directory: kubectl create configmap CONFIG_MAP_NAME --from-file=FOLDER_NAME/
+    - Create from ENV variables: kubectl create configmap CONFIG_MAP_NAME --from-env-file=FILE_NAME.sh
+- Secrets: 
+    - Get: kubectl get secrets
+    - Create secret with keys for each file in folder: kubectl create secret generic SECRET_NAME --from-file=path/to/folder
+    - Using literal: kubectl create secret generic SECRET_NAME --from-literal=key1=supersecret --from-literal=key2=topsecret
+    - Create secrets with combination of file and literal: kubectl create secret generic SECRET_NAME --from-file=ssh-privatekey=path/to/id_rsa --from-literal=passphrase=topsecret
+    - ENV file: kubectl create secret generic SECRET_NAME --from-env-file=path/to/bar.env
+    - Create secrets from file: kubectl create secret generic SECRET_NAME --from-file=path/to/file.properties
 - Cluster: 
     - Get info: kubectl cluster-info 
 - Deployment: 
@@ -120,9 +159,9 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
     - Delete: kubectl delete deployments DEPLOYMENT_NAME
     - Show: kubectl get deployment
     - Add record for update: kubectl apply -f DEPLOYMENT_NAME --record  (This will add command as in record)
-- Rollback and Rollout
+- Rollback and Rollout:
     - To rollback: kubectl rollback undo deployment DEPLOYMENT_NAME  (This will rollback to last version)
-    - To rollback: kubectl rollback undo deployment DEPLOYMENT_NAME --to-revision=REVISION_NUMBER deployment DEPLOYMENT_NAME  (This will rollback to specific version) (REVISION_NUMBER = kubectl rollback history deployment DEPLOYMENT_NAME)
+    - To rollback to specific revision: kubectl rollback undo deployment DEPLOYMENT_NAME --to-revision=REVISION_NUMBER deployment DEPLOYMENT_NAME  (This will rollback to specific version) (REVISION_NUMBER = kubectl rollback history deployment DEPLOYMENT_NAME)
     - To check rollout (new) status: kubectl rollout status deployment DEPLOYMENT_NAME
     - Pause: kubectl rollout pause deployment DEPLOYMENT_NAME
     - Resume: kubectl rollout resume deployment DEPLOYMENT_NAME
@@ -153,6 +192,10 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
     - View all namespaces: kubectl get pods --all-namespaces
     - To delete POD from namespace: kubectl delete pod pod-name -n NAMESPACE_NAME
     - To enter in namespace: kubectl config set-context --current --namespace=NAMESPACE_NAME
+    - Limit Range:
+        - Delete: kubectl delete limitranges LIMIT_RANGE_NAME
+    - ResourceQuota
+        - Delete: kubectl delete resourcequotas QUOTA_NAME
 - ResourceQuota:
     - Delete: kubectl delete resourcequotas QUOTA_NAME
 - POD: 
@@ -189,6 +232,9 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
     - Explain: kubectl explain rs
     - Delete including POD: kubectl delete rs REPLICA_SET_NAME
     - More details: kubectl get rs -o wide
+- Taints and Tolerance:
+    - Taint is on node and Tolerate is on POD
+    - Create taint: kubectl taint node NODE_NAME KEY_NAME=KEY_VALUE:NoSchedule
 - Extra:
     - To run command in specific conatiner of POD: kubectl exec pod-name -c CONTAINER_NAME env  (CONTAINER_NAME from yml file)
     

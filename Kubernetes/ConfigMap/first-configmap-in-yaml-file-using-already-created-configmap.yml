@@ -18,8 +18,11 @@ spec:
         requests: # Minimum resources
           memory: 256Mi # G, M, Mi, Gi etc
           cpu: "0.2" 
-      envFrom:
+      env:
         # To use config map, use it as env variable under containers 
-        - configMapKeyRef:
-            name: config-map-which -is-already-created-in-the-cluster
+        - name: env-variable-name-for-config-map
+          valueFrom:
+            configMapKeyRef:
+              key: key-name-from-the-config-map
+              name: config-map-which -is-already-created-in-the-cluster
 

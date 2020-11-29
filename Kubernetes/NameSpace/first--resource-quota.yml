@@ -4,6 +4,8 @@ metadata:
   name: resource-quota-name
 spec:
   hard:
+    pods: 10 # <= This is object based resource quota
+    # below are compute based resource quota
     requests.cpu: "0.5"
     requests.memory: 500Mi
     limits.cpu: 1
