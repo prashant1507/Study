@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-name
+  labels:
+    deployment-key: deployment-value
+spec:
+  replicas: 10
+  minReadySeconds: 30 # Time to wait before the POD is ready (Not best practise)
+  strategy:
+    rollingUpdate:
+      maxSurge: 2 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 4 # The number of pods that can be unavailable during the update process
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      pod-key: pod-value
+  template:
+    metadata:
+      # POD details
+      name: pod-name
+      labels:
+        pod-key: pod-value
+    spec:
+      containers:
+        - name: container-name
+          image: coolgourav147/nginx-custom
+          resources:
+            limits:
+              memory: 60Mi
+              cpu: "1"
+            requests:
+              memory: 56Mi
+              cpu: "0.2"
+          env:
+            - name: env-variable-name
+              value: env-variable-value
+            - name: country
+              value: usa

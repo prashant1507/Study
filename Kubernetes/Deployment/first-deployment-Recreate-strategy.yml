@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-name
+  labels:
+    deployment-key: deployment-value
+  annotations:
+    change-cause-key: "change-cause-value"
+spec:
+  replicas: 5
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      pod-key: pod-value
+  template:
+    metadata:
+      # POD details
+      name: pod-name
+      labels:
+        pod-key: pod-value
+    spec:
+      containers:
+        - name: container-name
+          image: coolgourav147/nginx-custom:v1
+          

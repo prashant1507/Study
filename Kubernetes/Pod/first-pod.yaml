@@ -4,19 +4,20 @@ metadata:
   name: pod-name
   labels:
     # Key:
-    env: label_name_attached_to_pod
-    type: my-first-pod
+    pod-key: pod-value
+    pod-key2: pod-value2
 spec:
   containers:
     - name: container-name
       image: coolgourav147/nginx-custom
+      imagePullPolicy: Never # To pull image from internet
       resources:
-        limits:
+        limits: # Maximum resources
           memory: 512Mi
           cpu: "1"
-        requests:
-          memory: 256Mi
-          cpu: "0.2"
+        requests: # Minimum resources
+          memory: 256Mi # G, M, Mi, Gi etc
+          cpu: "0.2" # Gi,Mi etc
       env:
         - name: env-variable-name
           value: env-variable-value
