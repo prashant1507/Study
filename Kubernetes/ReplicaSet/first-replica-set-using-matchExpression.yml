@@ -1,23 +1,31 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: ReplicaSet
 metadata:
-  name: replication-controller-name
+  name: replica-set-name
   labels:
-    replication-controller-key: replication-controller-value
-
-# Spec of ReplicaController
+    replica-set-key: replica-set-value
 spec:
-  replicas: 5
+  replicas: 4
   selector:
-    # Label value of POD
-    pod-key: pod-value
+    matchExpressions:
+      - key: pod-key
+        operator: In # NotIn
+        values: 
+          - pod-value
+          - pod-value1
+      # Another key 
+      - key: pod-key2
+        operator: NotIn
+        values:
+          - pod-value2
+          - pod-value3
   template:
-    # POD details
     metadata: 
+      # POD details
       name: pod-name
       labels:
+        # Key:
         pod-key: pod-value
-    # Spec of POD
     spec:
       containers:
         - name: container-name
@@ -34,3 +42,4 @@ spec:
               value: env-variable-value
             - name: country
               value: usa
+

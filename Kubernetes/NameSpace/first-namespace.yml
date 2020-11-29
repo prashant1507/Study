@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata: 
   name: pod-name
+  namespace: namespace-name
   labels:
     # Key:
     pod-key: pod-value
@@ -10,16 +11,15 @@ spec:
   containers:
     - name: container-name
       image: coolgourav147/nginx-custom
-      imagePullPolicy: Never # To pull image from internet
       resources:
         limits: # Maximum resources
           memory: 512Mi
           cpu: "1"
         requests: # Minimum resources
           memory: 256Mi # G, M, Mi, Gi etc
-          cpu: "0.2" 
-      envFrom:
-        # To use config map, use it as env variable under containers 
-        - configMapKeyRef:
-            name: config-map-which -is-already-created-in-the-cluster
-
+          cpu: "0.2" # Gi,Mi etc
+      env:
+        - name: env-variable-name
+          value: env-variable-value
+        - name: country
+          value: usa

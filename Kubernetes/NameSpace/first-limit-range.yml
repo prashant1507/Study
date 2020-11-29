@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: limit-range-name
+  namespace: name-of-namespace-where-you-want-to-create-this-limit
+spec:
+  limits:
+    - default: # This is Limit
+        cpu: 200m
+        memory: 500m
+      defaultRequest:
+        cpu: 100m
+        memory: 250m
+      min:
+        cpu: 100m
+        memory: 250m
+      max:
+        cpu: 200m
+        memory: 500m
+      type: Container 
+# If Limit range is defined than in POD no need to mention requests and limits

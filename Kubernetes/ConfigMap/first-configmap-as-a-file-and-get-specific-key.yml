@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pod-name
+  labels:
+    # Key:
+    pod-key: pod-value
+    pod-key2: pod-value2
+spec:
+  containers:
+    - name: container-name
+      image: coolgourav147/nginx-custom
+      imagePullPolicy: Never # To pull image from internet
+      volumeMount:
+        - name: volume-name
+          mountPath: location-of-path-in-container
+          readOnly: true
+      resources:
+        limits: # Maximum resources
+          memory: 512Mi
+          cpu: "1"
+        requests: # Minimum resources
+          memory: 256Mi # G, M, Mi, Gi etc
+          cpu: "0.2" 
+  volumes:
+    # To use file as config map, use volumes and volumneMount
+    # It will create a file with the name of key and content of file will be value of key 
+    - name: volume-name
+      configMap:
+        name: config-map-which -is-already-created-in-the-cluster
+        items:
+          - key: key-from-file
+            path: "file-name-which-will-be-created-at-mount-path"
+          - key: key2-from-file
+            path: "file-name-which-will-be-created-at-mount-path-2"
+

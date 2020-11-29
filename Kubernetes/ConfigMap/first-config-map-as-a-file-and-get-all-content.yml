@@ -11,6 +11,10 @@ spec:
     - name: container-name
       image: coolgourav147/nginx-custom
       imagePullPolicy: Never # To pull image from internet
+      volumeMount:
+        - name: volume-name
+          mountPath: location-of-path-in-container
+          readOnly: true
       resources:
         limits: # Maximum resources
           memory: 512Mi
@@ -18,8 +22,10 @@ spec:
         requests: # Minimum resources
           memory: 256Mi # G, M, Mi, Gi etc
           cpu: "0.2" 
-      envFrom:
-        # To use config map, use it as env variable under containers 
-        - configMapKeyRef:
-            name: config-map-which -is-already-created-in-the-cluster
+  volumes:
+    # To use file as config map, use volumes and volumneMount
+    # It will create a file with the name of key and content of file will be value of key 
+    - name: volume-name
+      configmap:
+        name: config-map-which -is-already-created-in-the-cluster
 

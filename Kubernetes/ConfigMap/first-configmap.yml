@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-map-name
+data:
+  key1: val1 # This is key value pair
+  key2: |
+    # This is add content of file
+    key1=val1
