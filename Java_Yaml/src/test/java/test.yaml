@@ -1,0 +1,4 @@
+#Yaml file to read test data
+Positive Scenario:
+ - Starting Range: 0
+ - Ending Range: 100
