@@ -24,7 +24,7 @@ https://www.youtube.com/watch?v=X48VuDVv0do&ab_channel=TechWorldwithNana
     - The default value is 10.
 - RecreateStrategy: It recreates replica but there is downtime
 - Namespace:
-    - Provide ccapability to cretae virtual clusters in a K8 cluster. (Like different different VMs). And these clusters are namespace 
+    - Provide ccapability to create virtual clusters in a K8 cluster. (Like different different VMs). And these clusters are namespace 
     - Namespaces in K8s:
         - kube-node-lease: Manage heartbeat to check if nodes are available
         - kube-public: Created by K8 and creates resources that are suppose to be available publically. User dont need authentication
@@ -32,7 +32,7 @@ https://www.youtube.com/watch?v=X48VuDVv0do&ab_channel=TechWorldwithNana
         - kube-system: Management PODs. Created by K8s
         - default: Create by K8 to run PODs 
         - Custom: Created by user to run PODs
-    - Names are unique in each namespace. Eg., TEST_NAME can be userd in NAMESPACE1 and NAMESPACE2
+    - Names are unique in each namespace. Eg., TEST_NAME can be used in NAMESPACE1 and NAMESPACE2
 - In K8 resoucres are: PODs, nodes, etc
 - Taints and Tolerance:
 
@@ -111,7 +111,7 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
   - https://www.techrepublic.com/article/how-to-configure-a-static-ip-address-in-ubuntu-server-18-04/
 
 ============= Tips ===============
-- Kubernatesdocumentation with examples
+- Kubernates documentation with examples
 - just add --help to get more info 
     - For eg.,
         - kubectl create secret generic --help
