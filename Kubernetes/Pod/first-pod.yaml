@@ -26,7 +26,7 @@ spec:
       args: [ "sleep", "30" ]
     # Give another container for the POD
     # - name: container2
-    #   image: 
+    #   image: nginx
   initContainers:
   # initContainer runs before main container
     - name: init-container-name
@@ -44,3 +44,7 @@ spec:
         - name: country
           value: usa
       args: [ "sleep", "50" ]
+  # nodeName: WORKER-NAME # (In case want to run on a particular worker) - Manual Scheduling - NOT RECOMMENDED, Recommended with Taints & Tolerance
+  # OR
+  # nodeName:
+      #NODE_LABEL_NAME: NODE_LABEL_VALUE

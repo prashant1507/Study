@@ -13,8 +13,9 @@ https://www.youtube.com/watch?v=X48VuDVv0do&ab_channel=TechWorldwithNana
 - In k8s, POD do abstraction over containers
 - Each POD gets its own IP address
 - Swap memory should be off
-- ReplicationController: If u have created 5 replica for a POD then it will check that 5 replicas are maintained or not. If not than if will create.
+- ReplicationController: If u have created 5 replica for a POD then it will check that 5 replicas are maintained or not. If not than if will create. Selector are not mandatory
 - ReplicaSet: 
+    - Selector are mandatory
     - Equality Based Selector: matchLabels
     - Set Based Selector: matchExpressions
 - Kubernates creates a unique value called Hash value so in order to identify PODS in case they have same labels
@@ -72,7 +73,9 @@ https://www.youtube.com/watch?v=X48VuDVv0do&ab_channel=TechWorldwithNana
 - Rollout (update) will only happen if the changes are done only for POD's spec section otherwise wont happen.
     - For eg., If in previous deployment replica was 2 and if you change replica to 4 in new dpeloyment thaan roolout won't happen
 - POD:
+    - POD is a collection of containers and its storage inside a node of a K8 cluster
     - If requests is not defined but limits is defined than by default requests=limits
+    - Use of the selector: kubectl get pods --selector 'LABEL_NAME in (LABEL_VALUE)'
 - ConfigMap: https://kubernetes.io/docs/concepts/configuration/configmap/
     - To give configuration of the application
 - Secrets: https://kubernetes.io/docs/concepts/configuration/secret/
@@ -120,6 +123,7 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
     - For e.g,
         - kubectl create ns ns1 --dry-run=client -o yaml
 - for volumnes mount, The FileOrFolder mode does not create the parent directory of the file. If the parent directory of the mounted file does not exist, the pod fails to start
+- To pull from https://quay.io/ just add quay.io/<Image_Name>
 
  
 ========= Extra/Commands =========
@@ -130,9 +134,13 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
     - json: kubectl get pods -o json
 - To convert string values to base64 encode for Secret file: echo -n 'PASSWORD' | base64
 - To reset slave in case it failed to become slave: `kubeadm reset`
-- Terminal to POD's with 1 container: kubectl exec -it POD_NAME --/bin/bash
+- Terminal to POD's with 1 container: kubectl exec -it POD_NAME /bin/bash
+- Terminal to POD's with multiple container: kubectl exec POD_NAME -c CONTAINER_NAME -it /bin/bash
 - Terminal to POD's container: kubectl exec pod-name -c CONTAINER_NAME env  (CONTAINER_NAME from yml file)
 - To watch live status of deployment creation: kubectl get pod --watch
+- Node:
+    - Add Label: kubectl label node WORKER_NAME LABEL_KEY=LABEL_NAME 
+    - Remove Lable: kubectl label node WORKER_NAME LABEL_KEY-
 - Explaination:
     - Less explaination: kubectl explain [pod][service][cluster][deployment]
     - Nested explaination for all keys: kubectl explain [pod][service][cluster][deployment] --recursive
@@ -207,12 +215,13 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
 - Label: 
     - Add: kubectl label pod POD_NAME labelKEY=labelVALUE
     - Update: kubectl label --overwrite pod POD_NAME labelKEY=labelVALUE
-    - Delete: kubectl label pod POD_NAME labelKEY-
+    - Delete: kubectl label pod POD_NAME labelKEY
     - To add label to all pods in same namespace: kubectl label pods --all labelKEY=labelVALUE
 - Service:
     - Explain: kubectl explain service
-    - Create internal service (Cluster IP): kubectl expose pod POD_NAME ---port=INCOMING_PORT_OF_CLUSTER --target-port=REDIRECT_PORT_OF_CLUSTER --name SERVICE_NAME
+    - Create internal service (Cluster IP and is by default): kubectl expose pod POD_NAME ---port=INCOMING_PORT_OF_CLUSTER --target-port=REDIRECT_PORT_OF_CLUSTER --name SERVICE_NAME
     - Create external service (NodePort): kubectl expose pod POD_NAME --type=NodePort ---port=INCOMING_PORT_OF_CLUSTER --target-port=REDIRECT_PORT_OF_CLUSTER --name SERVICE_NAME
+        Port range for NodePort: 30000-32767
     - Delete: kubectl delete services SERVICE_NAME
     - Service is accessable from all namespace. Either by DNS name (name of service in same namespace / complete path to sevice like `curl SERVICE_NAME.NAMESPACE_NAME.svc.cluster.local` from aanother nampespace) or IP:PORT
 - ReplicationController:
@@ -235,6 +244,7 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
 - Taints and Tolerance:
     - Taint is on node and Tolerate is on POD
     - Create taint: kubectl taint node NODE_NAME KEY_NAME=KEY_VALUE:NoSchedule
+    - Taint=taintName, Tolerance=taintName - tolerance will check taint with name taintName and schedule it on that node where taint is set. Not recommended 
 - Extra:
     - To run command in specific conatiner of POD: kubectl exec pod-name -c CONTAINER_NAME env  (CONTAINER_NAME from yml file)
     

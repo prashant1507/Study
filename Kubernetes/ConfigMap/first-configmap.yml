@@ -5,5 +5,5 @@ metadata:
 data:
   key1: val1 # This is key value pair
   key2: |
-    # This is add content of file
+    # This is the content of file
     key1=val1

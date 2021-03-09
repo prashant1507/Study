@@ -1,0 +1,324 @@
+Timings:
+9 to 5 
+Tea Breaks:
+11:00 - 11:15
+3:15 - 3:30
+Lunch Break:
+1 to 2 PM
+
+Managing Docker
+=======================
+Install Docker
+======================
+#wget -O /etc/yum.repos.d/docker.repo https://download.docker.com/linux/centos/docker-ce.repo
+#yum install docker -y 
+#systemctl start docker
+#systemctl enable docker
+
+logged in: 200 pull per six hour
+anonymous -> 100 pull per six hours 
+
+#docker login -> to login in Docker
+
+
+#docker images -> to list images 
+#docker ps -> to show running containers
+#docker ps -a -> to show all states containers 
+#docker pull <imagename> -> to download image 
+
+Registry:
+1) Public Registry:
+	1) hub.docker.com
+	2) quay.io
+2) Private Registry
+
+#docker run -it -d --name <containername> <imagename>  -> to create container
+
+-i -> interactive
+-t -> to assign terminal
+-d -> detach (run in background)
+
+#docker exec -it <containername> bash -> to access container
+#docker inspect <containername> -> to get details of the container 
+#docker stop <containername> -> to stop container 
+#docker start <containername> -> to start container 
+#docker rm <containername> -> to delete only stopped container 
+#docker rm -f <containername> -> to remove container forcefully 
+#docker container prune -> to remove all stopped containers 
+#docker rmi <imagename> -> to remove image
+#docker rmi -f <imagename> -> to remove image forcefully
+
+
+Create Application in container:
+#docker run -it -d --name=web1 ubuntu:16.04
+#docker exec -it <containername> bash 
+	> #apt-get update 
+	> #apt-get install apache2 -y 
+	> #echo "Hello this is our first web app" > /var/www/html/index.html 
+	> #service apache2 restart 
+	
+#docker inspect web1 -> to check ip 
+access with ip of container
+
+
+Create Application in Container with port mapping:	
+#docker run -it -d -p <hostportno>:<containerportno> --name=web1 ubuntu:16.04
+#docker exec -it <containername> bash 
+	> #apt-get update 
+	> #apt-get install apache2 -y 
+	> #echo "Hello this is our first web app" > /var/www/html/index.html 
+	> #service apache2 restart 
+	
+#docker inspect web1 -> to check ip 
+access with ip of container
+
+Managing Images
+====================
+There are two methods to create image:
+1) docker commit
+2) dockerfile -> set of instructions 
+
+Demo of docker commit:
+#docker run -it -d --name=web1 ubuntu:16.04
+#docker exec -it <containername> bash 
+	> #apt-get update 
+	> #apt-get install apache2 -y 
+	> #echo "Hello this is our first web app" > /var/www/html/index.html 
+	> #service apache2 restart 
+	
+#docker commit <containerid/containername> <imagename> -> to create image 
+
+
+Instructions:
+1) FROM -> base image
+2) RUN -> commands 
+3) ENV -> to add environment variable 
+4) COPY -> copy file from host machine to container 
+5) ADD -> same as copy but it can also copy from remote machine 
+6) CMD -. define a command at the of run a container but it can be change 
+7) ENTRYPOINT  -> define a command at the time of run a container but it can not be change 
+
+Demo of Docker File:
+#mkdir abc
+#cd abc
+#echo "THIS IS DOCKERFILE IMAGE" > index.html 
+#vim Dockerfile
+FROM ubuntu:16.04
+RUN apt-get update -y
+RUN apt-get install apache2 -y 
+COPY index.html /var/www/html/index.html
+
+#docker build . -t <imagename> 
+
+
+#docker history <imagename> -> to check image layer  	
+
+
+Pushing Images
+===================
+Requirement: one docker hub or quay.io account 
+
+Steps:
+1) create a repostitory 
+2) Tag your image:
+#docker tag image1 gauravkumar9130/<respositoryname>
+3) login in docker (#docker login)
+4) push image
+#docker push gauravkumar9130/<repositoryname>
+
+To deploy private registry:
+#docker run -it -d -p 5000:5000 --name private registry 
+#docker tag <imagename> localhost:5000/<respositoryname>
+#docker push localhost:5000/<repositoryname>
+
+How to find the location of image:
+#find / -name <repositoryname>
+
+Managing Container Resources
+==============================
+#docker stats -> to check resource consumption 
+
+To restrict memory: -1 -> unlimited 
+#docker run -it -d -m 100M --memory-swap -1 --name <containername> <imagename> 
+
+To restrict CPU:
+#docker run -it -d --cpuset-mems=1 --name <containername> <imagename>
+
+To check disk size usage:
+#docker  system df
+
+To check disk size usage in detail (for every resource):
+#docker system df -v 
+
+Managing Storage
+==========================
+
+Storage Methods:
+1) tmpfs -> temporary 
+2) volume 
+3) bind mount 
+
+Volume Commands
+====================
+#docker volume ls -> to list volumes 
+#docker volume create <volname> -> to create volume
+#docker volume inspect <volname> -> to inspect volume
+#docker volume rm <volname> -> to delete volume
+
+path of volume: /var/lib/docker/volumes/<volname> 
+
+To use volume:
+#docker run -it -d -v <volname>:<containerpath> --name=<containername> <imagename>
+
+Bind Mount
+==============
+share folder or file from host system
+
+To use bind mount:
+#docker run -it -d -v /etc/hosts:/myhosts --name=<containername> <imagename>
+
+Note: Whenever you willl change in file it will not reflect in container or vice-e-versa because selinux is enabled or label is not assigned
+
+#semanage fcontext -a -t container_file_t '/folderorfile(/.*)?'
+#restorecon -Rv /folderorfile
+
+Managing Network
+=======================
+Three types of network:
+1) bridge 
+2) host 
+3) none -> no network 
+
+docker0 -> default bridge (#ifconfig -> to check)
+
+#docker network ls -> to list network 
+
+#brctl show -> to list bridges
+
+
+By default, when we are creating new container (without define network) so it will use docker0 bridge.
+
+To create network:
+#docker network create --driver=bridge <bridgename>
+
+To create container with custom network:
+#docker run -it -d --network=<networkname> --name <containername> <imagename> 
+
+To create network using custom range:
+#docker network create --driver=bridge --subnet=192.168.1.0/24 <bridgename>
+
+
+To attach network:
+#docker network connect <bridgename> <container> 
+
+To detach network:
+#docker network disconnect <bridgename> <containername>
+
+To delete network:
+#docker network rm <networkname> 
+
+
+Demo of host network:
+=======================
+#docker run -it -d --network=host --name=<containername> <imagename>
+		( Note: by default some network packages are not available: 
+			#apt-get update -y && apt-get install iputils-ping net-tools -y)
+			
+
+Demo of none network:
+======================
+#docker run -it -d --network=none --name=<containername> <imagename>
+
+Linux Capabilities
+========================
+By default, when we are creating new container it's creating with restricted capabilites.
+
+To create container with all capabilites:
+#docker run -it -d --privileged --name=<containername> <imagename>
+
+
+--cap-add -> to add capabilites
+--cap-drop -> to delete capabilites
+
+=======================================================================================
+							  Kubernetes Installation
+							 =========================
+
+Lab Environment:
+1) 3 Centos Machine 	
+2) Static IP:
+		master: 172.25.230.31
+		worker1: 172.25.230.217
+		worker2: 172.25.230.227
+3) Hardware Requirement:
+			For Master: Min 2GB and 2 CPU core
+			For worker: min 1GB Ram and 1 CPU CORE
+			
+
+Pre-> (on every machine)
+
+1) Set the hostname:
+	#hostnamectl set-hostname <name> 
+
+2) Configure Local DNS: (on all machines)
+#vim /etc/hosts 
+172.25.230.31 master
+172.25.230.217 worker1
+172.25.230.227 worker2
+
+3) Stop Firewalld:
+	#systemctl stop firewalld
+	#systemctl disable firewalld
+
+4)  DISABLE SELINUX		
+	#vim /etc/sysconfig/selinux
+		SELINUX=permissive
+	#setenforce 0
+
+5) Disable SWAP:
+	#vim /etc/fstab 
+		add # before the swap line or remove entry
+	#swapoff -a
+		
+Docker Installation(On every Machine)
+======================================
+#wget -O /etc/yum.repos.d/docker.repo https://download.docker.com/linux/centos/docker-ce.repo
+#yum install docker -y
+#systemctl start docker
+#systemctl enable docker
+
+Install Required Packages for Kubernetes
+=========================================
+
+#vim /etc/yum.repos.d/kubernetes.repo ( on every machine)
+[kubernetes]
+name=kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+repo_gpgcheck=1
+
+#yum install kubectl kubelet kubeadm -y ( on every machine)
+#systemctl start kubelet ( on every machine)
+#systemctl enable kubelet ( on every machine)
+
+Initialize Kubernetes Cluster and Joining Nodes
+=================================================
+
+#kubeadm init --pod-network-cidr=10.244.0.0/16 (ONLY ON MASTER)
+NOTE: THIS WILL GIVE YOU SOME COMMANDS RUN USER CONFIGURE COMMANDS ON MASTER AND NODE JOIN COMMAND ON WORKER NODES.
+
+
+Network Solution ( RUN ON MASTER)
+=========================================
+Calico: https://docs.projectcalico.org/getting-started/kubernetes/self-managed-onprem/onpremises
+
+#kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+#kubectl get nodes -> to list the nodes
+
+
+
+
+

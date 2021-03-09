@@ -9,7 +9,7 @@ metadata:
 spec:
   replicas: 5
   selector:
-    # Label value of POD
+    # Label value of POD (Selectpr is optional)
     pod-key: pod-value
   template:
     # POD details

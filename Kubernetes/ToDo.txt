@@ -1,1 +1,2 @@
 1. Check if one node goes down than pod is moved to another node
+2. Use two masters

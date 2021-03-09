@@ -1,0 +1,349 @@
+
+Bash Completion
+----------------
+#yum install bash-completion -y
+#cd ~/.kube
+#kubectl completion bash > kube.sh
+#source kube.sh
+
+#vim $HOME/.bashrc
+source $HOME/.kube/kube.sh
+
+Describe Node:
+	#kubectl describe node <nodename>
+
+Kubectl Commands:
+	#kubectl run  --image=<imagename> <podname>
+	#kubectl get pods -> to show pods 
+	#kubectl get pods -o wide -> to show pod ipaddress, where pod is created
+	#kubectl describe pod <podname>
+	#kubectl get pods -A -> to show every pod of kubernetes cluster
+	#kubectl cluster-info -> to show cluster-information
+POD COMMANDS:
+	#kubectl run <podname> --image=<imagename>
+	#kubectl exec -it <podname> -- bash
+	#kubectl exec -it <podname> -c <containername> -- bash
+	#kubectl explain <resource>
+	#kubectl delete pod <podname>
+
+
+Create a pod with yaml file
+=============================
+#kubectl explain <resoucename>
+
+#vim pod.yml 
+apiVersion: v1
+kind: Pod
+metadata:
+ name: mypod
+spec:
+ containers:
+ - name: c1
+   image: quay.io/gauravkumar9130/nginxdemo
+
+#kubectl create -f <filename> -> to create
+#kubectl apply -f <filename> -> to apply changes (in case of deployment)
+#kubectl replace -f <filename> -> to replace changes
+#kubectl delete -f <filename> -> to delete pod 
+#kubectl run <podname> --image=<imagename> --dry-run=client -o yaml > <filename> -> to get yaml file
+
+Image Pull Policy:
+Types:
+1) always (by default)
+2) IfNotPresent
+3) Never
+
+#vim pod.yml 
+apiVersion: v1
+kind: Pod
+metadata:
+ name: mypod
+spec:
+ containers:
+ - name: c1
+   image: quay.io/gauravkumar9130/nginxdemo
+   imagePullPolicy: always
+   
+Create a pod with Label
+============================
+Label is used to tag the resources in Kubernetes.
+
+#vim label-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: dev-pod
+ labels:
+  env: dev
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+   
+
+#kubectl get pods --show-labels -> to show labels
+#kubectl label pod <pod name> <key>=<value> -> to set label
+#kubectl label pod <podname> <key>- -> to delete label
+#kubectl label --overwrite pod <podname> <key>=<value> -> to overwrite label
+
+Selector
+=================
+Used to filter the labels or tags.
+
+Two types of selector:
+1) equity based
+2) set based
+
+Equity Based
+===================
+#kubectl get pods --selector env=data (it will filter all the pods which have label env=data)
+#kubectl get pods --selector env!=data (it will show all the pods except env=data)
+
+Set Based(Multiple selector)
+==============================
+in -> equalto
+notIn -> not equalto
+
+#kubectl get pods --selector 'env in (data,dev)' -> it will list all the pods which have label env=data and env=dev 
+
+Replication Controller
+==============================
+#vim rc.yml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+ name: rc-web
+spec:
+ replicas: 5
+ template:
+  metadata:
+   name: rc-pod
+   labels:
+    app: web
+  spec:
+   containers:
+   - name: mycontainer
+     image: quay.io/gauravkumar9130/nginxdemo
+	 
+#kubectl get rc or #kubectl get replicationcontroller -> to list rc
+#kubectl delete rc <rcname> -> to delete rc
+
+(NOTE: ONLY FOR PRACTICE:
+	to disable: #kubectl drain <nodename> --force --ignore-daemonsets
+	to enable: #kubectl uncordon <nodename> )
+
+Example 1: Replica Set (equity based selector)
+===================================
+#vim rs.yml
+apiVersion: apps/v1
+kind: RepliaSet
+metadata:
+ name: rs-web
+spec:
+ replicas: 5
+ selector:
+  matchLabels:
+   app: web
+ template:
+  metadata:
+   name: rs-pod
+   labels:
+    app: web
+  spec:
+   containers:
+   - name: mycontainer
+     image: quay.io/gauravkumar9130/nginxdemo
+	 
+#kubectl get rs -> to list replicaset
+#kubectl delete rs <rsname> -> to delete rs
+
+Example 2: Replicaset with set based selector
+===============================================
+#vim rs-web1.yml
+apiVersion: apps/v1
+kind: RepliaSet
+metadata:
+ name: rs-web
+spec:
+ replicas: 5
+ selector:
+  matchExpressions:
+  - key: app
+    operator: In
+	values:
+	 - nginx
+	 - web
+ template:
+  metadata:
+   name: rs-pod
+   labels:
+    app: web
+  spec:
+   containers:
+   - name: mycontainer
+     image: quay.io/gauravkumar9130/nginxdemo
+   
+
+Service
+================
+Demo of Cluster IP
+=======================
+#vim myapp.yml
+apiVersion: apps/v1
+kind: RepliaSet
+metadata:
+ name: webapp
+spec:
+ replicas: 5
+ selector:
+  matchLabels:
+   app: web
+ template:
+  metadata:
+   labels:
+    app: web
+  spec:
+   containers:
+   - name: mycontainer
+     image: quay.io/gauravkumar9130/nginxdemo
+	 
+#vim cip.yml
+apiVersion: v1
+kind: Service
+metadata:
+ name: mysvc
+spec:
+ type: ClusterIP
+ ports:
+ - targetPort: 80		##containerportno
+   port: 5000			##clusteripportno
+ selector:
+  app: web
+
+Demo of NodePort
+====================
+#vim myapp.yml
+apiVersion: apps/v1
+kind: RepliaSet
+metadata:
+ name: webapp
+spec:
+ replicas: 5
+ selector:
+  matchLabels:
+   app: web
+ template:
+  metadata:
+   labels:
+    app: web
+  spec:
+   containers:
+   - name: mycontainer
+     image: quay.io/gauravkumar9130/nginxdemo
+
+#vim nodeport.yml
+apiVersion: v1
+kind: Service
+metadata:
+ name: web-node-port
+spec:
+ type: NodePort
+ ports:
+ - targetPort: 80
+   port: 80
+   nodePort: 30002
+ selector:
+  app: web
+
+
+Manual Scheduling
+=======================
+#vim pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: my-custom-pod
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+ nodeName: <node name>
+
+
+Taint and Toleration
+=======================
+Taint -> Node
+Toleration -> Pod
+
+#kubectl taint nodes <nodename> <key>=<value>:<effect>
+Example:
+	#kubectl taint nodes worker1.example.com app=blue:NoSchedule -> to set taint
+
+#kubectl taint nodes worker1.example.com app- -> to delete taint
+
+#vim toleration.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: mypod
+ labels:
+  app: a
+  app: b
+spec:
+ containers:
+ - name: mycontainer
+   image: quay.io/gauravkumar9130/nginxdemo
+ tolerations:
+ - key: "app"
+   operator: "Equal"
+   value: "blue"
+   effect: "NoSchedule"
+
+Node Selector
+====================
+To Label Node:
+	#kubectl label node <node name> <key>=<value>
+	
+To check labels:
+#kubectl get nodes --show-labels
+
+To delete label:
+#kubectl label node <nodename> <key>-
+
+To create pod using node selector:
+#vim abc.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: newpod
+spec:
+ containers:
+ - name: newcontainer
+   image: quay.io/gauravkumar9130/nginxdemo
+ nodeSelector:
+  size: large
+  
+Demo of Node Affinity
+==========================
+#kubectl label node worker1.example.com size=large
+
+
+#vim affinity.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: mypod
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+ affinity:
+  nodeAffinity:
+   requiredDuringSchedulingIgnoredDuringExecution:
+    nodeSelectorTerms:
+	- matchExpressions:
+	  - key: size
+	    operator: In
+	    values:
+	    - large
+	    - medium

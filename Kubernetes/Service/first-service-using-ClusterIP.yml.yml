@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-name
+  labels:
+    # Key: Value
+    service-key: service-value
+spec:
+  type: ClusterIP
+  ports:
+  - targetPort: 32000  ## Container Port
+    port: 8000
+  selector:
+    # Label as in the POD
+    pod-key: pod-value

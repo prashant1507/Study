@@ -1,0 +1,50 @@
+NOTE: DELETE every containers and images
+
+1) Create a docker container with the name restricted and the memory restricted to 200MB.
+
+2) Create a docker container with the name web2 using image ubuntu:16.04 and create a webserver with content "Hello Docker".
+NOTE:it should be accessible on port no 8081
+
+3) Create a Dockerfile with given instructions give image name as db-postgres:
+	image: postgres:9.4
+	environment variables:
+		POSTGRES_USER=postgres
+		POSTGRES_PASSWORD=postgres
+
+4) Create a docker volume with name persistentvol.
+
+5) Create a docker container with the name web3 and use persistentvol volume to mount directory /var/www/html.
+
+6) Create two networks with name: netone and nettwo
+
+7) Create a container with name web4 and use netone network.
+
+8) Create a container with name web5 and use nettwo network.
+
+9) Push all the images you have created in above questions in your private registry. (Deploy Private Registry if not have)
+
+
+NOTE: Once done delete all the networks,volumes and containers.
+=========================================================================================
+
+Practice Questions
+=======================
+(NOTE: Delete all existing pods,replicasets,replicationcontrollers)
+
+1) Create a Pod with named pod-1 using label app=prod
+
+2) Create a Pod with named pod-2 using label app=dev
+
+3) Now we have requirement to create replicaset with named rs-data including app=prod and app=dev label.
+
+4) Create a cluster IP service for replicaset rs-data.
+
+5) Create a pod with named data1 using label app=data1.
+
+6) Create a Node Port service for app=data1 label it should be able accessible on port 30005.
+
+7) Set label env=prod on worker1 and env=dev on worker2.
+
+8) Create a pod with named myenvpod and this pod should create on worker1 or worker2 (Use NodeAffinity)
+
+9) Delete the label env=prod from worker and env=dev from worker2.

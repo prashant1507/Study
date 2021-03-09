@@ -1,0 +1,611 @@
+Daemon Set
+=============
+#vim ds.yml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+ name: myds
+spec:
+ selector:
+  matchLabels:
+   app: nginx
+ template:
+  metadata:
+   labels:
+    app: nginx
+  spec:
+   containers:
+   - name: abc
+     image: quay.io/gauravkumar9130/nginxdemo
+	 
+	 
+Managing Deployments
+========================
+#vim depl.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: mydeployment
+spec:
+ replicas: 5
+ selector:
+  matchLabels:
+   app: nginx
+ template:
+  metadata:
+   labels:
+    app: nginx
+  spec:
+   containers:
+   - name: web
+     image: nginx
+	 imagePullPolicy: IfNotPresent
+
+#kubectl describe deployments <depl name> -> to describe deployment
+#kubectl get deployments -> to list deployment
+To set/update image:
+#kubectl set image deployment/<deployment name> <containername>=<imagename> --record
+To list history of deployment:
+#kubectl rollout history deployment/<deployment name>
+To go to previous version:
+#kubectl rollout undo deployment/<deployment name>
+To go to particular revision:
+#kubectl rollout undo deployment/<deployment name> --to-revision=<number>
+To edit deployment:
+#kubectl edit deployment <deploymentname>
+
+Demo of Blue-Green Deployment
+===============================
+#vim blue.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: blue-deployment
+spec:
+ replicas: 5
+ selector:
+  matchLabels:
+    app: nginx 
+	version: blue				##it can be anything
+ template:
+  metadata:
+   labels:
+     app: nginx
+	 version: blue
+  spec:
+    containers:
+	- name: abc
+	  image: nginx
+	  
+#vim svc.yml
+apiVersion: v1
+kind: Service
+metadata:
+ name: mysvc
+spec:
+ ports:
+ - port: 80
+   targetPort: 80
+ selector:
+  app: nginx
+  version: blue
+  
+Now our application is accessible from blue (we will see welcome to nginx)
+
+now we have a requirement to update our image:
+#vim green-deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: green-deployment
+spec:
+ replicas: 5
+ selector:
+  matchLabels:
+    app: nginx 
+	version: green				##it can be anything
+ template:
+  metadata:
+   labels:
+     app: nginx
+	 version: green
+  spec:
+    containers:
+	- name: abc
+	  image: nginx
+
+Route all the traffic from blue deployment to green deployment:
+#kubectl edit svc mysvc
+change selector version: green
+
+Now all the traffic coming from green deployment.
+
+Namespace
+==================
+#kubectl create ns <nsname> -> to create namespace
+OR
+#vim ns.yml
+apiVersion: v1
+kind: Namespace
+metadata:
+ name: <nsname> 
+#kubectl get ns -> to list namespace
+
+To create pods in namespace:
+#vim pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: abc
+ namespace: <ns name>
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+
+#kubectl get <resource> -n <nsname> -> to list resources of other namespace
+#kubectl describe ns <nsname> -> to describe ns 
+#kubectl delete ns <nsname> -> to delete namespace and all the resources in namespace
+#kubectl get pods -A -> to list all the pods of all namespace
+#kubectl config set-context $(kubectl config current-context) --namespace=<nsname> -> to switch namespace
+
+Resource Limits on Namespace
+==============================
+#vim dev-quota.yml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+ name: dev-quota
+ namespace: dev
+spec:
+ hard:
+  pods: "3"
+  requests.memory: "1Gi"			##minimum memory
+  limits.memory: "2Gi"				##max memory
+  requests.cpu: "1"					##min cpu
+  limits.cpu: "3"					##max cpu
+
+#kubectl get quota -n <nsname>
+
+To  create pod with quota:
+#vim dev-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: dev-pod
+ namespace: dev
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+ resources:
+    requests:
+	 cpu: "1"
+	 memory: "1Gi"
+	limits:
+	 cpu: "2"
+	 memory: "2Gi"
+	 
+	 
+Environment Variable
+========================
+Demo of Plain Key:
+#vim pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: plain-pod
+spec:
+ containers:
+ - name: db
+   image: quay.io/gauravkumar9130/mysql
+   env:
+   - name: MYSQL_ROOT_PASSWORD
+     value: root123
+   - name: MYSQL_USER
+     value: gaurav
+   - name: MYSQL_PASSWORD
+     value: gaurav123
+	 
+Demo of ConfigMap:
+======================
+#vim sql-cm.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: dbsql
+data:
+ MYSQL_ROOT_PASSWORD: root123
+ MYSQL_USER: gaurav
+ MYSQL_PASSWORD: gaurav123
+ 
+#kubectl get cm OR #kubectl get configmap
+
+#vim cm-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: plain-pod
+spec:
+ containers:
+ - name: db
+   image: quay.io/gauravkumar9130/mysql
+   envFrom:
+    - configMapRef:
+	   name: dbsql
+
+Demo of Secrets
+====================
+#echo -n "gaurav" | base64 -> to convert plain text into base64 format
+copy username
+
+#vim secrets.yml
+apiVersion: v1
+kind: Secret
+metadata:
+ name: mysecret
+data:
+ MYSQL_USER: << paste username>>
+
+#kubectl get secrets
+#kubectl describe secret <secretname> -> to describe secret
+
+Use secret in Pod
+====
+#vim secret-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: plain-pod
+spec:
+ containers:
+ - name: db
+   image: quay.io/gauravkumar9130/mysql
+   envFrom:
+    - secretRef:
+	   name: mysecret
+	   
+Mount environment variable as a volume
+=========================================
+Example1: Use configmap as volume in pod
+
+#vim sql-cm.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: dbsql
+data:
+ MYSQL_ROOT_PASSWORD: root123
+ MYSQL_USER: gaurav
+ MYSQL_PASSWORD: gaurav123
+
+#vim pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: config-pod
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+   volumeMounts:
+   - name: config-vol
+     mountPath: /data
+ volumes:
+ - name: config-vol
+   configMap:
+    name: dbsql
+	
+Mount secrets as volume:
+==========================
+#echo -n "gaurav" | base64 -> to convert plain text into base64 format
+copy username
+
+#vim secrets.yml
+apiVersion: v1
+kind: Secret
+metadata:
+ name: mysecret
+data:
+ MYSQL_USER: << paste username>>
+ 
+#vim pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: secret-pod
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+   volumeMounts:
+   - name: secret-vol
+     mountPath: /data
+ volumes:
+ - name: secret-vol
+   secret:
+    secretName: dbsql
+	
+Use some variables from secret
+=================================
+#echo -n "gaurav" | base64 -> to convert plain text into base64 format
+copy username
+
+#vim secrets.yml
+apiVersion: v1
+kind: Secret
+metadata:
+ name: mysecret
+data:
+ MYSQL_USER: << paste username>>
+ 
+#vim secret-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: mypod
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+   env:
+    - name: MYCREDENTIAL
+	  valueFrom:
+	   secretKeyRef:
+	    name: << secret name >>
+		key: MYSQL_USER 
+		
+Storage
+=================
+Demo of EmptyDir
+==================
+#vim pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: abc
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+   volumeMounts:
+   - name: cache
+     mountPath: /data/
+ volumes:
+ - name: cache
+   emptyDir: {}
+   
+Demo of hostpath
+=================
+#vim pv.yml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+ name: pv1
+spec:
+ accessModes:
+ - ReadWriteMany
+ capacity:
+  storage: 2Gi
+ hostPath:
+  path: /myvoldata
+  
+#kubectl get pv or #kubectl get persistentvolume -> to list pv
+
+#vim pvc.yml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: pvc1
+spec:
+ accessModes:
+ - ReadWriteMany
+ resources:
+  requests:
+   storage: "1Gi"
+
+#kubectl get pvc -> to list pvc
+
+Use pvc in pod
+====================
+#vim pvc-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: my-pv-pod
+spec:
+ containers:
+ - name: abc
+   image: quay.io/gauravkumar9130/nginxdemo
+   volumeMount:
+   - name: myvol
+     mountPath: /mycontainerdata			
+ volumes:
+ - name: myvol
+   persitentVolumeClaim:
+    claimName: pvc1
+  
+USE NFS AS STORAGE
+===============================
+Requirement: Configure a NFS SERVER
+
+#vim pv.yml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+ name: pv-nfs
+spec:
+ capacity:
+  storage: 1Gi
+ accessModes:
+ - ReadWriteMany
+ nfs:
+  server: << nfs server ip>
+  path: << shared path from nfs server >>
+
+#vim pvc.yml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: pvc1
+spec:
+ accessModes:
+ - ReadWriteMany
+ resources:
+  requests:
+   storage: "1Gi"
+   
+Security
+==================
+Demo of Service Account
+=======================
+#kubectl get sa -> to list service account
+#kubectl get svc -> (default kubernetes service is used to create communication between apiserver and pod)
+
+Custom Service Account
+=======================
+#kubectl create sa nitin-sa
+#vim pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: pod2
+spec:
+ containers:
+ - name: a
+   image: centos
+   imagePullPolicy: IfNotPresent
+   stdin: true
+   tty: true
+ serviceAccountName: nitin-sa
+
+#kubectl create clusterrole nitin-sarole --verb=get,list --resource=pods
+#kubectl create clusterrolebinding nitin-sabinding --clusterrole=nitin-sarole --serviceaccount=default:nitin-sa
+
+Now nitin-sa have permission to list pods in cluster:
+#kubectl exec -it pod2 -- bash
+> #TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+> #curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
+
+Create User:
+=============
+#git clone https://github.com/gauravkumar9130/kubeuser
+#cd kubeuser
+#vim user_script.sh
+Go to line no 35 and remove ens192 and type your connection name.
+
+#mkdir <username>
+COPY SCRIPT FILE TO <username> DIRECTORY
+#chmod a+x user_script.sh
+#sh user_script.sh
+
+Managing Roles
+==============
+To create role:
+#kubectl create role <rolename> --verb=get,list --resource=pods,services
+
+To create role for list pods (only for pod1 and pod2):
+#kubectl create role <rolename> --verb=get,list --resource=pods --resource-name=pod1 --resource-name=pod2
+
+To list roles:
+#kubectl get roles
+
+To describe role:
+#kubectl describe role <rolename>
+
+To delete role:
+#kubectl delete role <rolename>
+
+Managing Role Binding (assign permission)
+=========================================
+To assign role to user:
+#kubectl create rolebinding <rolebindingname> --role=<rolename> --user=<username> 
+
+To assign role to service account:
+#kubectl create rolebinding <rolebindingname> --role=<rolename> --serviceaccount=<nsname>:<sa name>
+
+To list rolebinding:
+#kubectl get rolebinding
+
+To describe rolebinding:
+#kubectl describe rolebinding <rolebindingname>
+
+To delete rolebinding:
+#kubectl delete rolebinding <rolebindingname>
+
+Verify Permission:
+#kubectl auth can-i <verb> <resource> 
+	example:
+		1) #kubectl auth can-i create pod -> check permission for current logged in user
+		2) #kubectl auth can-i create pod --as <username> -> check permission for <username> user
+		
+
+Managing Clusterrole
+=======================
+To check role access:
+#kubectl api-resources --namespaced=true
+
+To check clusterrole access:
+#kubectl api-resources --namespaced=false
+
+To create clusterrole:
+#kubectl create clusterrole <clusterrolename> --verb=get,list --resource=pods
+
+To delete clusterrole:
+#kubectl delete clusterrole <clusterrolename>
+
+To describe clusterrole:
+#kubectl describe clusterrole <clusterrolename>
+
+Managing Clusterrole binding
+============================
+To create clusterrolebinding for user:
+#kubectl create clusterrolebinding <name> --clusterrole=<clusterrolename> --user=<username>
+
+To create clusterrolebinding for sa:
+#kubectl create clusterrolebinding <name> --clusterrole=<clusterrolename> --serviceaccount=<nsname>:<saname>
+
+To delete clusterrolebinding:
+#kubectl delete clusterrolebinding <name>
+
+To describe clusterrolebinding:
+#kubectl describe clusterrolebinding <name>
+
+To list clusterrolebinding:
+#kubectl get clusterrolebinding
+
+To give admin access:
+#kubectl create clusterrolebinding <name> --clusterrole=cluster-admin --user=<username>
+
+Security Context
+===================
+#vim sc.yml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: ntp-pod
+spec:
+ containers:
+ - name: abc
+   image: nginx
+   imagePullPolicy: IfNotPresent
+   securityContext:
+    capabilities:
+	  add: ["SYS_TIME"]
+
+
+Logging and Monitoring
+===========================
+#kubectl logs <podname>
+#kubectl describe <resourcetype> <resourcename>
+	for example: kubectl describe pod gaurav-pod
+	
+Deploy prometheus:
+#git clone https://github.com/gauravkumar9130/prometheus.git
+#cd prometheus
+#kubectl create -f prometheus.yaml
+#kubectl create -f kube-state-metrics-configs/.
+
+To verify installation:
+#kubectl get pods -n monitoring
+#kubectl get svc -n monitoring

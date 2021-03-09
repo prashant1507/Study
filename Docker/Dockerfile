@@ -6,7 +6,7 @@
 # RUN - to run commands
 # USER - to change user
 # COPY - to copy to docker image
-# ADD - to copy content from tar or link to image 
+# ADD - to copy content from tar or link to image, also can copy from remote machine
 # CMD - to run command as soon as container starts
 # EXPOSE - to expose port
 # ENTRYPOINT - To run command on container starts
@@ -29,6 +29,6 @@ RUN apt-get update
 #RUN mkdir /tmp/folder1
 #COPY ./commands.yml /tmp/folder1
 #ADD ./file.zip /tmp/folder1
-#CMD ["ifconfig"]i
+#CMD ["ifconfig"]
 #EXPOSE 22 80
 #ENTRYPOINT [ "tree" ]
