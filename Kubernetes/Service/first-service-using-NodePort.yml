@@ -8,7 +8,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - nodePort: 32000
+  - nodePort: 32000 # Port to be used to access form outside
     port: 8000 ## Cluster IP port
     targetPort: 80 ## container port
   selector:

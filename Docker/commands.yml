@@ -41,6 +41,19 @@ docker container logs <container_id> // to check logs
 docker container logs <container_id> -f // to check live logs
 docker container run -p basePort:dockerPort <image name> // To map ports
 
+docker run -it -d --name=<containername> <imagename>  -> to create container
+-i -> interactive
+-t -> to assign terminal
+-d -> detach (run in background)
 
+docker exec -it <containername> bash -> to access container
+docker inspect <containername> -> to get details of the container 
+docker stop <containername> -> to stop container 
+docker start <containername> -> to start container 
+docker rm <containername> -> to delete only stopped container 
+docker rm -f <containername> -> to remove container forcefully 
+docker container prune -> to remove all stopped containers 
+docker rmi <imagename> -> to remove image
+docker rmi -f <imagename> -> to remove image forcefully
 
 

@@ -181,7 +181,7 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
     - Service: kubectl get service
     - Status for node: kubectl get nodes [-A]
     - Status for pods: kubectl get pod [-o wide] [-A]
-- Description:
+- Describe:
     - POD: kubectl describe pod POD_NAME 
     - Service: kubectl describe service SERVICE_NAME
 - ConfigMap:
@@ -216,6 +216,7 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
     - Add: kubectl label pod POD_NAME labelKEY=labelVALUE
     - Update: kubectl label --overwrite pod POD_NAME labelKEY=labelVALUE
     - Delete: kubectl label pod POD_NAME labelKEY
+    - Set label to node: kubectl label nodes <node-name> <label-key>=<label-value>
     - To add label to all pods in same namespace: kubectl label pods --all labelKEY=labelVALUE
 - Service:
     - Explain: kubectl explain service
