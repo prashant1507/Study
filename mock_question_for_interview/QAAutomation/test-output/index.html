@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-QAAutomation">
+              <span class="suite-name border-passed">QAAutomation</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-QAAutomation">
+                    <span>I:\Eclipse_Workspace\QAAutomation\Testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-QAAutomation">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-QAAutomation">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-QAAutomation">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-QAAutomation">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-QAAutomation">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-QAAutomation">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">6 methods,   6 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-QAAutomation" class="hide-methods passed suite-QAAutomation"> (hide)</a> <!-- hide-methods passed suite-QAAutomation -->
+                      <a href="#" panel-name="suite-QAAutomation" class="show-methods passed suite-QAAutomation"> (show)</a> <!-- show-methods passed suite-QAAutomation -->
+                    </span>
+                    <div class="method-list-content passed suite-QAAutomation">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-QAAutomation" title="qaAutomation.testsuite.SumOfOddNumbersTestSuite" hash-for-method="verificationOfErrorMessageForNonNumericEndRange">verificationOfErrorMessageForNonNumericEndRange</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-QAAutomation" title="qaAutomation.testsuite.SumOfOddNumbersTestSuite" hash-for-method="verificationOfErrorMessageForNonNumericStartRange">verificationOfErrorMessageForNonNumericStartRange</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-QAAutomation" title="qaAutomation.testsuite.SumOfOddNumbersTestSuite" hash-for-method="verificationOfSumOfOddNumbers">verificationOfSumOfOddNumbers</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-QAAutomation" title="qaAutomation.testsuite.SumOfOddNumbersTestSuite" hash-for-method="verificationOfSumOfOddNumbersForNegativeEndRange">verificationOfSumOfOddNumbersForNegativeEndRange</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-QAAutomation" title="qaAutomation.testsuite.SumOfOddNumbersTestSuite" hash-for-method="verificationOfSumOfOddNumbersForNegativeRanges">verificationOfSumOfOddNumbersForNegativeRanges</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-QAAutomation" title="qaAutomation.testsuite.SumOfOddNumbersTestSuite" hash-for-method="verificationOfSumOfOddNumbersForNegativeStartRange">verificationOfSumOfOddNumbersForNegativeStartRange</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-QAAutomation -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-QAAutomation" class="panel QAAutomation">
+          <div class="suite-QAAutomation-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">qaAutomation.testsuite.SumOfOddNumbersTestSuite</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="verificationOfErrorMessageForNonNumericEndRange">
+                  </a> <!-- verificationOfErrorMessageForNonNumericEndRange -->
+                  <span class="method-name">verificationOfErrorMessageForNonNumericEndRange</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="verificationOfErrorMessageForNonNumericStartRange">
+                  </a> <!-- verificationOfErrorMessageForNonNumericStartRange -->
+                  <span class="method-name">verificationOfErrorMessageForNonNumericStartRange</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="verificationOfSumOfOddNumbers">
+                  </a> <!-- verificationOfSumOfOddNumbers -->
+                  <span class="method-name">verificationOfSumOfOddNumbers</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="verificationOfSumOfOddNumbersForNegativeEndRange">
+                  </a> <!-- verificationOfSumOfOddNumbersForNegativeEndRange -->
+                  <span class="method-name">verificationOfSumOfOddNumbersForNegativeEndRange</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="verificationOfSumOfOddNumbersForNegativeRanges">
+                  </a> <!-- verificationOfSumOfOddNumbersForNegativeRanges -->
+                  <span class="method-name">verificationOfSumOfOddNumbersForNegativeRanges</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="verificationOfSumOfOddNumbersForNegativeStartRange">
+                  </a> <!-- verificationOfSumOfOddNumbersForNegativeStartRange -->
+                  <span class="method-name">verificationOfSumOfOddNumbersForNegativeStartRange</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-QAAutomation-class-passed -->
+        </div> <!-- panel QAAutomation -->
+        <div panel-name="test-xml-QAAutomation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">I:\Eclipse_Workspace\QAAutomation\Testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;QAAutomation&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Test&quot;&gt;
+    &lt;parameter name=&quot;browser&quot; value=&quot;firefox&quot;/&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;qaAutomation.testsuite.SumOfOddNumbersTestSuite&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;verificationOfSumOfOddNumbers&quot;/&gt;
+          &lt;include name=&quot;verificationOfSumOfOddNumbersForNegativeRanges&quot;/&gt;
+          &lt;include name=&quot;verificationOfSumOfOddNumbersForNegativeStartRange&quot;/&gt;
+          &lt;include name=&quot;verificationOfSumOfOddNumbersForNegativeEndRange&quot;/&gt;
+          &lt;include name=&quot;verificationOfErrorMessageForNonNumericStartRange&quot;/&gt;
+          &lt;include name=&quot;verificationOfErrorMessageForNonNumericEndRange&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- qaAutomation.testsuite.SumOfOddNumbersTestSuite --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Test --&gt;
+&lt;/suite&gt; &lt;!-- QAAutomation --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-QAAutomation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for QAAutomation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Test (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-QAAutomation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for QAAutomation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-QAAutomation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for QAAutomation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_QAAutomation');
+function tableData_QAAutomation() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(6);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'verificationOfSumOfOddNumbers')
+data.setCell(0, 2, 'qaAutomation.testsuite.SumOfOddNumbersTestSuite')
+data.setCell(0, 3, 69);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'verificationOfErrorMessageForNonNumericStartRange')
+data.setCell(1, 2, 'qaAutomation.testsuite.SumOfOddNumbersTestSuite')
+data.setCell(1, 3, 15);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'verificationOfErrorMessageForNonNumericEndRange')
+data.setCell(2, 2, 'qaAutomation.testsuite.SumOfOddNumbersTestSuite')
+data.setCell(2, 3, 13);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'verificationOfSumOfOddNumbersForNegativeStartRange')
+data.setCell(3, 2, 'qaAutomation.testsuite.SumOfOddNumbersTestSuite')
+data.setCell(3, 3, 10);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'verificationOfSumOfOddNumbersForNegativeRanges')
+data.setCell(4, 2, 'qaAutomation.testsuite.SumOfOddNumbersTestSuite')
+data.setCell(4, 3, 10);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'verificationOfSumOfOddNumbersForNegativeEndRange')
+data.setCell(5, 2, 'qaAutomation.testsuite.SumOfOddNumbersTestSuite')
+data.setCell(5, 3, 10);
+window.suiteTableData['QAAutomation']= { tableData: data, tableDiv: 'times-div-QAAutomation'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 127 ms</span>
+              <div id="times-div-QAAutomation">
+              </div> <!-- times-div-QAAutomation -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-QAAutomation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for QAAutomation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-QAAutomation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-QAAutomation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">qaAutomation.testsuite.SumOfOddNumbersTestSuite</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">startExecution(public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbers())</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">verificationOfSumOfOddNumbers</span>
+                <span class="method-start">179 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">getResult([TestResult name=verificationOfSumOfOddNumbers status=SUCCESS method=SumOfOddNumbersTestSuite.verifi...)</span>
+                <span class="method-start">250 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">startExecution(public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegative...)</span>
+                <span class="method-start">525 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">verificationOfSumOfOddNumbersForNegativeRanges</span>
+                <span class="method-start">525 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">getResult([TestResult name=verificationOfSumOfOddNumbersForNegativeRanges status=SUCCESS method=SumOfOddNumber...)</span>
+                <span class="method-start">536 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">startExecution(public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegative...)</span>
+                <span class="method-start">592 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">verificationOfSumOfOddNumbersForNegativeStartRange</span>
+                <span class="method-start">592 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">getResult([TestResult name=verificationOfSumOfOddNumbersForNegativeStartRange status=SUCCESS method=SumOfOddNu...)</span>
+                <span class="method-start">603 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">startExecution(public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegative...)</span>
+                <span class="method-start">659 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">verificationOfSumOfOddNumbersForNegativeEndRange</span>
+                <span class="method-start">662 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">getResult([TestResult name=verificationOfSumOfOddNumbersForNegativeEndRange status=SUCCESS method=SumOfOddNumb...)</span>
+                <span class="method-start">673 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">startExecution(public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfErrorMessageForNonNumericS...)</span>
+                <span class="method-start">727 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">verificationOfErrorMessageForNonNumericStartRange</span>
+                <span class="method-start">728 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">getResult([TestResult name=verificationOfErrorMessageForNonNumericStartRange status=SUCCESS method=SumOfOddNum...)</span>
+                <span class="method-start">744 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">startExecution(public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfErrorMessageForNonNumericE...)</span>
+                <span class="method-start">792 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">verificationOfErrorMessageForNonNumericEndRange</span>
+                <span class="method-start">792 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">getResult([TestResult name=verificationOfErrorMessageForNonNumericEndRange status=SUCCESS method=SumOfOddNumbe...)</span>
+                <span class="method-start">807 ms</span>
+              </div> <!-- configuration-method after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

@@ -1,0 +1,24 @@
+#Yaml file to read test data
+Positive Scenario:
+ - Start Range: 1
+ - End Range: 100
+
+NonNumeric Start Range:
+  - Start Range: aa
+  - End Range: 100
+  
+NonNumeric End Range:
+  - Start Range: 100
+  - End Range: aa
+  
+Negative Range:
+  - Start Range: -10
+  - End Range: -1
+  
+Negative Start Range:
+  - Start Range: -10
+  - End Range: 1
+  
+Negative End Range:
+  - Start Range: 10
+  - End Range: -1

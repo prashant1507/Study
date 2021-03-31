@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
+  <reporter-output>
+  </reporter-output>
+  <suite name="QAAutomation" duration-ms="886" started-at="2018-12-07T21:45:15Z" finished-at="2018-12-07T21:45:16Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="886" started-at="2018-12-07T21:45:15Z" finished-at="2018-12-07T21:45:16Z">
+      <class name="qaAutomation.testsuite.SumOfOddNumbersTestSuite">
+        <test-method status="PASS" signature="startExecution(java.lang.reflect.Method)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="startExecution" is-config="true" duration-ms="178" started-at="2018-12-07T21:45:15Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbers()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startExecution -->
+        <test-method status="PASS" signature="verificationOfSumOfOddNumbers()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="verificationOfSumOfOddNumbers" duration-ms="69" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verificationOfSumOfOddNumbers -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="getResult" is-config="true" duration-ms="274" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verificationOfSumOfOddNumbers status=SUCCESS method=SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbers()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="PASS" signature="verificationOfSumOfOddNumbersForNegativeRanges()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="verificationOfSumOfOddNumbersForNegativeRanges" duration-ms="10" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verificationOfSumOfOddNumbersForNegativeRanges -->
+        <test-method status="PASS" signature="startExecution(java.lang.reflect.Method)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="startExecution" is-config="true" duration-ms="0" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegativeRanges()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startExecution -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="getResult" is-config="true" duration-ms="55" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verificationOfSumOfOddNumbersForNegativeRanges status=SUCCESS method=SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegativeRanges()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="PASS" signature="verificationOfSumOfOddNumbersForNegativeStartRange()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="verificationOfSumOfOddNumbersForNegativeStartRange" duration-ms="10" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verificationOfSumOfOddNumbersForNegativeStartRange -->
+        <test-method status="PASS" signature="startExecution(java.lang.reflect.Method)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="startExecution" is-config="true" duration-ms="0" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegativeStartRange()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startExecution -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="getResult" is-config="true" duration-ms="55" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verificationOfSumOfOddNumbersForNegativeStartRange status=SUCCESS method=SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegativeStartRange()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="PASS" signature="startExecution(java.lang.reflect.Method)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="startExecution" is-config="true" duration-ms="3" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegativeEndRange()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startExecution -->
+        <test-method status="PASS" signature="verificationOfSumOfOddNumbersForNegativeEndRange()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="verificationOfSumOfOddNumbersForNegativeEndRange" duration-ms="10" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verificationOfSumOfOddNumbersForNegativeEndRange -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="getResult" is-config="true" duration-ms="54" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verificationOfSumOfOddNumbersForNegativeEndRange status=SUCCESS method=SumOfOddNumbersTestSuite.verificationOfSumOfOddNumbersForNegativeEndRange()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="PASS" signature="startExecution(java.lang.reflect.Method)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="startExecution" is-config="true" duration-ms="1" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfErrorMessageForNonNumericStartRange()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startExecution -->
+        <test-method status="PASS" signature="verificationOfErrorMessageForNonNumericStartRange()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="verificationOfErrorMessageForNonNumericStartRange" duration-ms="15" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verificationOfErrorMessageForNonNumericStartRange -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="getResult" is-config="true" duration-ms="48" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verificationOfErrorMessageForNonNumericStartRange status=SUCCESS method=SumOfOddNumbersTestSuite.verificationOfErrorMessageForNonNumericStartRange()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="PASS" signature="verificationOfErrorMessageForNonNumericEndRange()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="verificationOfErrorMessageForNonNumericEndRange" duration-ms="13" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verificationOfErrorMessageForNonNumericEndRange -->
+        <test-method status="PASS" signature="startExecution(java.lang.reflect.Method)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="startExecution" is-config="true" duration-ms="0" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void qaAutomation.testsuite.SumOfOddNumbersTestSuite.verificationOfErrorMessageForNonNumericEndRange()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startExecution -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4]" name="getResult" is-config="true" duration-ms="55" started-at="2018-12-07T21:45:16Z" finished-at="2018-12-07T21:45:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verificationOfErrorMessageForNonNumericEndRange status=SUCCESS method=SumOfOddNumbersTestSuite.verificationOfErrorMessageForNonNumericEndRange()[pri:0, instance:qaAutomation.testsuite.SumOfOddNumbersTestSuite@18be83e4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+      </class> <!-- qaAutomation.testsuite.SumOfOddNumbersTestSuite -->
+    </test> <!-- Test -->
+  </suite> <!-- QAAutomation -->
+</testng-results>
