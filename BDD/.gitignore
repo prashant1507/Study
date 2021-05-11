@@ -1,0 +1,8 @@
+target
+.vscode
+.project
+.classpath
+.factorypath
+.settings
+Reports
+allure-results
