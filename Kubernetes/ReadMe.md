@@ -102,6 +102,12 @@ https://linuxconfig.org/how-to-install-kubernetes-on-ubuntu-20-04-focal-fossa-li
 - Setup POD network for cluster on master using any method on master 
   - for eg. Using Flannel: `kubeadm init --pod-network-cidr=10.244.0.0/16`
   - one you run above command, you can see commands to copy some files on master and run on slave
+  - Note: If getting error - `The connection to the server localhost:8080 was refused - did you specify the right host or port?`
+    ```
+        $ mkdir -p $HOME/.kube
+        $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    ```
   - check status by `kubectl get nodes -A` and all should be `running` if not up than run `kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml`  (Ref Link: https://coreos.com/flannel/docs/latest/kubernetes.html)
 - Set bash auto complete for kubectl
   - apt install bash-completion
